@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<meta>
+  <info name="Eden Roleplay" description="Eden RP's main resource" author="Fledra" version="0.0.1" />
+
+  <script src="core/Core.cs" type="server" lang="csharp" />
+  <script src="core/Client.cs" type="server" lang="csharp" />
+  <script src="core/Logger.cs" type="server" lang="csharp" />
+</meta>
