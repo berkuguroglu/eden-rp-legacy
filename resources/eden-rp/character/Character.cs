@@ -1,4 +1,6 @@
-﻿namespace eden_rp.character
+﻿using GrandTheftMultiplayer.Server.API;
+
+namespace eden_rp.character
 {
     class Character
     {

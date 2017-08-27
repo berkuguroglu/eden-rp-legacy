@@ -1,8 +1,8 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.building.business
+namespace eden_rp.vehicle
 {
-    class Business
+    class Vehicle
     {
     }
 }
