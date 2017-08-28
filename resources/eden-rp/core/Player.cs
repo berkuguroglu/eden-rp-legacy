@@ -1,8 +1,8 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.core
+namespace eden_rp.EdenCore
 {
-    class Client
+    class Player
     {
     }
 }
