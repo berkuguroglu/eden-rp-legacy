@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2017 at 03:43 PM
+-- Generation Time: Aug 29, 2017 at 09:59 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -46,6 +46,32 @@ CREATE TABLE `erp_users` (
 INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`) VALUES
 (100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 106.224, -1940.63, 20.8037);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `erp_vehicles`
+--
+
+DROP TABLE IF EXISTS `erp_vehicles`;
+CREATE TABLE `erp_vehicles` (
+  `vehid` int(11) NOT NULL,
+  `ownerclientid` int(11) NOT NULL,
+  `ownername` text NOT NULL,
+  `modelhash` int(11) NOT NULL,
+  `c1` int(11) NOT NULL,
+  `c2` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `erp_vehicles`
+--
+
+INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, `c1`, `c2`, `x`, `y`, `z`) VALUES
+(0, 1001, 'Lisa_Crown', -624529134, 2, 2, 111.884, -1944.83, 20.7625);
+
 --
 -- Indexes for dumped tables
 --
@@ -55,6 +81,12 @@ INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`) VALUES
 --
 ALTER TABLE `erp_users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `erp_vehicles`
+--
+ALTER TABLE `erp_vehicles`
+  ADD PRIMARY KEY (`vehid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
