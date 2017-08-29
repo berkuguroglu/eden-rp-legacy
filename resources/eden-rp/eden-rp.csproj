@@ -55,9 +55,15 @@
   <ItemGroup>
     <Compile Include="building\Building.cs" />
     <Compile Include="building\business\Business.cs" />
+    <Compile Include="building\business\commands\Admin.cs" />
+    <Compile Include="building\business\commands\Player.cs" />
+    <Compile Include="building\housing\commands\Admin.cs" />
+    <Compile Include="building\housing\commands\Player.cs" />
     <Compile Include="building\housing\House.cs" />
     <Compile Include="character\Animation.cs" />
     <Compile Include="character\Character.cs" />
+    <Compile Include="character\commands\Admin.cs" />
+    <Compile Include="character\commands\Player.cs" />
     <Compile Include="core\crypto\Bcrypt.cs" />
     <Compile Include="core\Core.cs" />
     <Compile Include="core\crypto\Crypto.cs" />
@@ -65,16 +71,12 @@
     <Compile Include="core\Logger.cs" />
     <Compile Include="core\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vehicle\commands\Admin.cs" />
+    <Compile Include="vehicle\commands\Player.cs" />
     <Compile Include="vehicle\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="building\business\commands\" />
-    <Folder Include="building\housing\commands\" />
-    <Folder Include="character\commands\" />
     <Folder Include="character\events\" />
-    <Folder Include="core\events\" />
-    <Folder Include="other\" />
-    <Folder Include="vehicle\commands\" />
     <Folder Include="vehicle\events\" />
   </ItemGroup>
   <ItemGroup>
