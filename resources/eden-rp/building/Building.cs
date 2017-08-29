@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace eden_rp.building
 {
-    class Building
+    class Building 
     {
+    
     }
 }

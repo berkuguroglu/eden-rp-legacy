@@ -64,12 +64,13 @@
     <Compile Include="character\Character.cs" />
     <Compile Include="character\commands\Admin.cs" />
     <Compile Include="character\commands\Player.cs" />
+    <Compile Include="core\commands\Admin.cs" />
+    <Compile Include="core\commands\Player.cs" />
     <Compile Include="core\crypto\Bcrypt.cs" />
     <Compile Include="core\Core.cs" />
     <Compile Include="core\crypto\Crypto.cs" />
     <Compile Include="core\DatabaseHandler.cs" />
     <Compile Include="core\Logger.cs" />
-    <Compile Include="core\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vehicle\commands\Admin.cs" />
     <Compile Include="vehicle\commands\Player.cs" />

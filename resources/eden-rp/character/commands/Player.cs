@@ -4,5 +4,8 @@ namespace eden_rp.character.commands
 {
     class Player
     {
+    
+
+
     }
 }
