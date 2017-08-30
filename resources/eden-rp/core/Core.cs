@@ -21,6 +21,7 @@ namespace eden_rp.EdenCore
             API.consoleOutput("Test script running");
             EdenDatabaseHandler.OpenConnection();
             GeneralSettings();
+            vehicle.events.Vevents.LoadVehicles();
         }
 
         private void OnPlayerConnectedHandler(Client player)

@@ -74,11 +74,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vehicle\commands\Admin.cs" />
     <Compile Include="vehicle\commands\Player.cs" />
+    <Compile Include="vehicle\events\Vevents.cs" />
     <Compile Include="vehicle\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="character\events\" />
-    <Folder Include="vehicle\events\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
