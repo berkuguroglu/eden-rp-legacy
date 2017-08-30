@@ -1,11 +1,16 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared.Math;
+using System.Collections.Generic;
+using Eden.Vehicle;
 
-namespace eden_rp.EdenCore
+namespace Eden.Core
 {
     public class EdenCore : Script
     {
+        internal static API api = new API();
+        internal static List<Player> PlayerList = new List<Player>();
+        internal static List<EdenVehicle> VehicleList = new List<EdenVehicle>();
 
         public EdenCore()
         {
@@ -19,19 +24,19 @@ namespace eden_rp.EdenCore
         private void OnResourceStartHandler()
         {
             API.consoleOutput("Test script running");
-            EdenDatabaseHandler.OpenConnection();
-            GeneralSettings();
-            vehicle.events.Vevents.LoadVehicles();
+            InitializeServer();
+            DatabaseHandler.OpenConnection();
+            VehicleEvents.OnResourceStart();
         }
 
         private void OnPlayerConnectedHandler(Client player)
         {
-            if (!EdenDatabaseHandler.IsUserValid(player)) player.kick("Karakter adi bulunamadi!");
+            if (!DatabaseHandler.IsUserValid(player)) player.kick("Karakter adi bulunamadi!");
         }
 
         private void OnPlayerDisconnectedHandler(Client player, string reason)
         {
-            EdenDatabaseHandler.Logout(player);
+            DatabaseHandler.LogoutPlayer(player);
         }
 
         private void OnPlayerFinishedDownloadHandler(Client player)
@@ -48,10 +53,10 @@ namespace eden_rp.EdenCore
             {
                 case "loginCheck":
                     {
-                        if (EdenDatabaseHandler.IsPasswordValid(sender, arguments[0].ToString()))
+                        if (DatabaseHandler.IsPasswordValid(sender, arguments[0].ToString()))
                         {
                             sender.triggerEvent("loginGranted");
-                            sender.position = EdenDatabaseHandler.GetLastPosition(sender);
+                            InitializePlayer(sender);
                             sender.freeze(false);
                         }
                         else sender.triggerEvent("loginDenied");
@@ -59,7 +64,15 @@ namespace eden_rp.EdenCore
                     }
             }
         }
-        private void GeneralSettings()
+
+        private void InitializePlayer(Client client)
+        {
+            Player newplayer = new Player(client);
+            DatabaseHandler.InitializeCharacter(newplayer);
+            PlayerList.Add(newplayer);
+        }
+
+        private void InitializeServer()
         {
             API.setCommandErrorMessage("~r~(( HATA:~w~ Böyle bir komut bulunmuyor.~r~ ))");
         }
