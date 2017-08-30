@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using GrandTheftMultiplayer.Server.API;
 
-public class NewEditorScript1 : ScriptableObject
+namespace eden_rp.core.commands
 {
-    [MenuItem("Tools/MyTool/Do It in C#")]
-    static void DoIt()
+    class Admin
     {
-        EditorUtility.DisplayDialog("MyTool", "Do It in C# !", "OK", "");
     }
 }
