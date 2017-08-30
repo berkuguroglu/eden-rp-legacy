@@ -20,6 +20,7 @@ namespace eden_rp.EdenCore
         {
             API.consoleOutput("Test script running");
             EdenDatabaseHandler.OpenConnection();
+            GeneralSetting();
         }
 
         private void OnPlayerConnectedHandler(Client player)
@@ -56,6 +57,10 @@ namespace eden_rp.EdenCore
                         break;
                     }
             }
+        }
+        private void GeneralSettings()
+        {
+            API.setCommandErrorMessage("~r~(( HATA:~w~ Böyle bir komut bulunmuyor.~r~ ))");
         }
 
     }

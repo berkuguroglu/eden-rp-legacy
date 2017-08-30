@@ -7,7 +7,7 @@ namespace eden_rp.EdenCore
 {
     public static class EdenDatabaseHandler
     {
-        private static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
+        public static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
         private static API api = new API();
 
         public static bool OpenConnection()
