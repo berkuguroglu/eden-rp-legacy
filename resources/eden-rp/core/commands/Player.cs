@@ -6,7 +6,7 @@ using GrandTheftMultiplayer.Server.Managers;
 public class Player : Script
 {
     [Command("me", GreedyArg = true)]
-    public void mes(Client player, string message)
+    public void EmoteMe(Client player, string message)
     {
         List<Client> melist = API.getPlayersInRadiusOfPlayer(20, player);
         foreach (Client p in melist)
@@ -15,7 +15,7 @@ public class Player : Script
         }
     }
     [Command("do", "~w~(( KULLANIM: /do [eylem] ))", GreedyArg = true)]
-    public void dos (Client player, string message)
+    public void EmoteDo (Client player, string message)
     {
         List<Client> dolist = API.getPlayersInRadiusOfPlayer(20, player);
         foreach (Client p in dolist)
@@ -24,7 +24,7 @@ public class Player : Script
         }
     }
     [Command("c", "~w~(( KULLANIM: /c [konuşma] ))", GreedyArg = true)]
-    public void c(Client player, string message)
+    public void ChatSilent(Client player, string message)
     {
         List<Client> plist = API.getPlayersInRadiusOfPlayer(10, player);
         foreach (Client p in plist)
@@ -33,7 +33,7 @@ public class Player : Script
         }
     }
     [Command("s", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
-    public void s(Client player, string message)
+    public void ChatShout(Client player, string message)
     {
         List<Client> plist = API.getPlayersInRadiusOfPlayer(40, player);
         foreach (Client p in plist)
@@ -42,7 +42,7 @@ public class Player : Script
         }
     }
     [Command("b", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
-    public void b(Client player, string message)
+    public void ChatOOC(Client player, string message)
     {
         List<Client> plist = API.getPlayersInRadiusOfPlayer(40, player);
         foreach (Client p in plist)
