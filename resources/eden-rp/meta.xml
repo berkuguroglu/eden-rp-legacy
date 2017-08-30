@@ -29,10 +29,12 @@
   
   <script src="character/Character.cs" type="server" lang="csharp" />
   <script src="character/Animation.cs" type="server" lang="csharp" />
+  <script src="character/Events.cs" type="server" lang="csharp" />
   <script src="character/commands/Admin.cs" type="server" lang="csharp" />
   <script src="character/commands/Player.cs" type="server" lang="csharp" />
   
   <script src="vehicle/Vehicle.cs" type="server" lang="csharp" />
+  <script src="vehicle/Events.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Admin.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Player.cs" type="server" lang="csharp" />
 </meta>
