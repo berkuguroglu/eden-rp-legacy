@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GrandTheftMultiplayer.Server;
-using GrandTheftMultiplayer.Server.API;
-using GrandTheftMultiplayer.Server.Elements;
-using GrandTheftMultiplayer.Server.Constant;
-using GrandTheftMultiplayer.Server.Managers;
+﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Shared.Math;
 
@@ -37,7 +28,7 @@ namespace eden_rp.vehicle
             this.color2 = c2;
             ownername = name;
             this.parkposition = p;
-            API.consoleOutput("Bir araç oluşturuldu.");
+            API.consoleOutput("Bir araç oluşturuldu."); // make logger do this
             // mysql insertion işlemi
         }
         public object gData(string objectname)
