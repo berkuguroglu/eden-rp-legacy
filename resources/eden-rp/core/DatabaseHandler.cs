@@ -1,14 +1,14 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
-using GrandTheftMultiplayer.Shared.Math;
 using MySql.Data.MySqlClient;
+using Eden.Vehicle;
 
-namespace eden_rp.EdenCore
+namespace Eden.Core
 {
     public static class EdenDatabaseHandler
     {
-        public static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
-        public static API api = new API();
+        private static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
+        private static API api = new API();
 
         public static bool OpenConnection()
         {
@@ -67,25 +67,9 @@ namespace eden_rp.EdenCore
             reader.Close();
             return valid;
         }
-
-        public static Vector3 GetLastPosition(Client player)
-        {
-            Vector3 position = new Vector3();
-            MySqlCommand cmd = new MySqlCommand("SELECT posx, posy, posz FROM erp_users WHERE name=@name", con);
-            cmd.Parameters.AddWithValue("name", player.name);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                position.X = reader.GetFloat("posx");
-                position.Y = reader.GetFloat("posy");
-                position.Z = reader.GetFloat("posz");
-            }
-            reader.Close();
-            return position;
-        }
-
+        
         // update as gamemode expands
-        public static void Logout(Client player)
+        public static void LogoutPlayer(Client player)
         {
             try
             {
@@ -101,5 +85,52 @@ namespace eden_rp.EdenCore
                 api.consoleOutput("[!] MYSQL exception on player logout: " + ex.StackTrace); // make logger do this
             }
         }
+
+        public static void AddVehicle(EdenVehicle veh)
+        {
+            MySqlCommand command = new MySqlCommand("INSERT INTO vehs (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", con);
+            command.Parameters.AddWithValue("@id", veh.Vehid);
+            command.Parameters.AddWithValue("@ownercid", veh.Owc);
+            command.Parameters.AddWithValue("@ownname", veh.Ownername);
+            command.Parameters.AddWithValue("@model", (int)veh.Modelhash);
+            command.Parameters.AddWithValue("@colorone", veh.Color1);
+            command.Parameters.AddWithValue("@colortwo", veh.Color2);
+            command.Parameters.AddWithValue("@px", veh.Parkposition.X);
+            command.Parameters.AddWithValue("@py", veh.Parkposition.Y);
+            command.Parameters.AddWithValue("@pz", veh.Parkposition.Z);
+            command.ExecuteNonQuery();
+        }
+
+        public static void InitializeCharacter(Player player)
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT id, posx, posy, posz, firstlogin, money, bankaccount, bankmoney, skin, age, level, experience, adminlevel FROM erp_users WHERE name=@name", con);
+                cmd.Parameters.AddWithValue("name", player.Client.name);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        player.Adminlevel = reader.GetInt32("adminlevel");
+                        player.Character.Age = reader.GetInt32("age");
+                        player.Character.Bankaccount = reader.GetInt32("bankaccount");
+                        player.Character.Bankmoney = reader.GetInt32("bankmoney");
+                        player.Clientid = reader.GetInt32("id");
+                        player.Level = reader.GetInt32("level");
+                        player.Experience = reader.GetInt32("experience");
+                        player.Firstlogin = reader.GetBoolean("firstlogin");
+                        player.Character.Skin = reader.GetInt32("skin");
+                        player.Client.position.X = reader.GetFloat("posx");
+                        player.Client.position.Y = reader.GetFloat("posy");
+                        player.Client.position.Z = reader.GetFloat("posz");
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                api.consoleOutput("[!] MYSQL exception on player initialization: " + ex.StackTrace); // make logger do this 
+            }
+        }
+
     }
 }
