@@ -19,7 +19,7 @@
   <script src="building/business/Business.cs" type="server" lang="csharp" />
   <script src="building/business/commands/Admin.cs" type="server" lang="csharp" />
   <script src="building/business/commands/Player.cs" type="server" lang="csharp" />
-  <script src="building/housing/Business.cs" type="server" lang="csharp" />
+  <script src="building/housing/House.cs" type="server" lang="csharp" />
   <script src="building/housing/commands/Admin.cs" type="server" lang="csharp" />
   <script src="building/housing/commands/Player.cs" type="server" lang="csharp" />
   
