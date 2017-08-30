@@ -44,5 +44,15 @@ namespace Eden.Vehicle
             API.consoleOutput("Bir araç oluşturuldu."); // make logger do this
             if (first) DatabaseHandler.AddVehicle(this);
         }
+
+        static public int FindVehicle(int vehid)
+        {
+            for (int i = 0; i < EdenCore.VehicleList.Count; i++)
+            {
+                if ((int)EdenCore.VehicleList[i].Vehid == vehid)
+                    return i;
+            }
+            return -1;
+        }
     }
 }

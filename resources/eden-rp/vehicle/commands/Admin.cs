@@ -1,5 +1,5 @@
 ﻿using Eden.Core;
-using System.Collections.Generic;
+using Eden.Vehicle;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Server.Managers;
@@ -31,25 +31,18 @@ namespace Eden.Vehicle.Commands
             Core.Player sender = Core.Player.FindPlayer(player);
             if (!sender.Equals(null) && sender.Adminlevel > 2)
             {
-                int turn = FindVehicle(vehid, EdenCore.VehicleList);
+                int turn = EdenVehicle.FindVehicle(vehid);
                 if (turn != -1)
+                {
                     API.setEntityPosition(EdenCore.VehicleList[turn].Veh, new Vector3(player.position.X + 5, player.position.Y, player.position.Z));
+                }
+                    
                 else API.sendChatMessageToPlayer(player, "Böyle bir araç bulunmuyor.");
             }
             else
             {
                 // not admin
             }
-        }
-
-        public int FindVehicle(int vehid, List<EdenVehicle> vhl)
-        {
-            for (int i = 0; i < vhl.Count; i++)
-            {
-                if ((int)vhl[i].Vehid == vehid)
-                    return i;
-            }
-            return -1;
         }
     }
 }
