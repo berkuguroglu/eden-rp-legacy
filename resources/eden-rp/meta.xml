@@ -13,6 +13,22 @@
   <script src="core/crypto/Bcrypt.cs" type="server" lang="csharp" />
   <script src="core/DatabaseHandler.cs" type="server" lang="csharp" />
   <script src="core/login/login.js" type="client" lang="javascript" />
-  <script src="core/Player.cs" type="server" lang="csharp" />
   <script src="core/Logger.cs" type="server" lang="csharp" />
+
+  <script src="building/Building.cs" type="server" lang="csharp" />
+  <script src="building/business/Business.cs" type="server" lang="csharp" />
+  <script src="building/business/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="building/business/commands/Player.cs" type="server" lang="csharp" />
+  <script src="building/housing/Business.cs" type="server" lang="csharp" />
+  <script src="building/housing/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="building/housing/commands/Player.cs" type="server" lang="csharp" />
+  
+  <script src="character/Character.cs" type="server" lang="csharp" />
+  <script src="character/Animation.cs" type="server" lang="csharp" />
+  <script src="character/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="character/commands/Player.cs" type="server" lang="csharp" />
+  
+  <script src="vehicle/Vehicle.cs" type="server" lang="csharp" />
+  <script src="vehicle/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="vehicle/commands/Player.cs" type="server" lang="csharp" />
 </meta>
