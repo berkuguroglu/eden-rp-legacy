@@ -4,7 +4,7 @@ using GrandTheftMultiplayer.Shared.Math;
 using MySql.Data.MySqlClient;
 namespace eden_rp.vehicle
 {
-    class Vehicle : Script  
+    class Vehicle : Script
     {
         VehicleHash modelhash;
         public NetHandle veh;
@@ -47,14 +47,13 @@ namespace eden_rp.vehicle
                  case "posx": return parkposition.X;
                  case "posy": return parkposition.Y;
                  case "posz": return parkposition.Z;
-                 default: return refs; // returting a reference thats null 
+                 default: return refs; // returting a reference thats null
             }
         }
         private void SetDataForDB()
         {
             MySqlConnection connectionvehicle = EdenCore.EdenDatabaseHandler.con;
-            connectionvehicle.Open();
-            MySqlCommand command = new MySqlCommand("INSERT INTO vehs (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", connectionvehicle);
+            MySqlCommand command = new MySqlCommand("INSERT INTO erp_vehicles (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", connectionvehicle);
             command.Parameters.AddWithValue("@id", this.vehid);
             command.Parameters.AddWithValue("@ownercid", this.owc);
             command.Parameters.AddWithValue("@ownname", this.ownername);
@@ -65,7 +64,6 @@ namespace eden_rp.vehicle
             command.Parameters.AddWithValue("@py", this.parkposition.Y);
             command.Parameters.AddWithValue("@pz", this.parkposition.Z);
             command.ExecuteNonQuery();
-            connectionvehicle.Close();
         }
     }
 }

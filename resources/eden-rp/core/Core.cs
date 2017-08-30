@@ -20,7 +20,7 @@ namespace eden_rp.EdenCore
         {
             API.consoleOutput("Test script running");
             EdenDatabaseHandler.OpenConnection();
-            GeneralSetting();
+            GeneralSettings();
         }
 
         private void OnPlayerConnectedHandler(Client player)

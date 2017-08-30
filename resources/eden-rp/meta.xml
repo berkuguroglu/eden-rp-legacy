@@ -31,4 +31,5 @@
   <script src="vehicle/Vehicle.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Admin.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Player.cs" type="server" lang="csharp" />
+  <script src="vehicle/events/Vevents.cs" type="server" lang="csharp" />
 </meta>
