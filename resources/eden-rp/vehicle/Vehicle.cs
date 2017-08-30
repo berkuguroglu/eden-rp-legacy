@@ -31,13 +31,15 @@ namespace eden_rp.vehicle
             API.consoleOutput("Bir araç oluşturuldu."); // make logger do this
             // mysql insertion işlemi
         }
-        public object gData(string objectname)
+
+        // consider getter/setter way instead (Edit->Refactor->Encapsulate field)
+        public object GetData(string objectname)
         {
             switch(objectname)
             {
-                 case "model"; return modelhash;
-                 case "vehid"; return vehid;
-                 case "owc"; return owc;
+                case "model": return modelhash;
+                case "vehid": return vehid;
+                case "owc": return owc;
                  case "c1": return color1;
                  case "c2": return color2;
                  case "posx": return parkposition.X;
@@ -45,8 +47,6 @@ namespace eden_rp.vehicle
                  case "posz": return parkposition.Z;
                  default: return refs; // returting a reference thats null 
             }
-
         }
-       
     }
 }
