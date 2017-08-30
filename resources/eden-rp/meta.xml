@@ -11,10 +11,14 @@
   <script src="core/Core.cs" type="server" lang="csharp" />
   <script src="core/crypto/Crypto.cs" type="server" lang="csharp" />
   <script src="core/crypto/Bcrypt.cs" type="server" lang="csharp" />
+  <script src="core/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="core/commands/Player.cs" type="server" lang="csharp" />
   <script src="core/DatabaseHandler.cs" type="server" lang="csharp" />
-  <script src="core/login/login.js" type="client" lang="javascript" />
   <script src="core/Logger.cs" type="server" lang="csharp" />
-
+  <script src="core/Player.cs" type="server" lang="csharp" />
+          
+  <script src="core/login/login.js" type="client" lang="javascript" />
+  
   <script src="building/Building.cs" type="server" lang="csharp" />
   <script src="building/business/Business.cs" type="server" lang="csharp" />
   <script src="building/business/commands/Admin.cs" type="server" lang="csharp" />
@@ -31,5 +35,4 @@
   <script src="vehicle/Vehicle.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Admin.cs" type="server" lang="csharp" />
   <script src="vehicle/commands/Player.cs" type="server" lang="csharp" />
-  <script src="vehicle/events/Vevents.cs" type="server" lang="csharp" />
 </meta>
