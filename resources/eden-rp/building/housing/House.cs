@@ -1,6 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.building.housing
+namespace Eden.Building.Housing
 {
     class House
     {

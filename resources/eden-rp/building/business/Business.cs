@@ -1,6 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.building.business
+namespace Eden.Building.Business
 {
     class Business
     {

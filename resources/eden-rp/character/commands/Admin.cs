@@ -1,6 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.character.commands
+namespace Eden.Character.Commands
 {
     class Admin
     {

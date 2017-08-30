@@ -2,7 +2,7 @@
 using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Shared.Math;
 
-namespace eden_rp.EdenCore
+namespace Eden.Core
 {
     class Logger
     {

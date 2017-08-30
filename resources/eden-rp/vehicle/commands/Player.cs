@@ -1,6 +1,6 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 
-namespace eden_rp.vehicle.commands
+namespace Eden.Vehicle.Commands
 {
     class Player
     {

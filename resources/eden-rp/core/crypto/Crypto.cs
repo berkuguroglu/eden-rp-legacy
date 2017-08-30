@@ -1,8 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using MySql.Data.MySqlClient;
-
-namespace eden_rp.EdenCore
+﻿namespace Eden.Core
 {
     sealed class Crypto
     {
