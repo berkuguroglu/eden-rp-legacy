@@ -13,7 +13,7 @@ namespace Eden.Core.Commands
             List<Client> melist = API.getPlayersInRadiusOfPlayer(20, player);
             foreach (Client p in melist)
             {
-                API.sendChatMessageToPlayer(p, "~#ff33cc~", player.name + ": " + message);
+                API.sendChatMessageToPlayer(p, "~#ff33cc~", player.name + " " + message);
             }
         }
         [Command("do", "~w~(( KULLANIM: /do [eylem] ))", GreedyArg = true)]
@@ -22,7 +22,7 @@ namespace Eden.Core.Commands
             List<Client> dolist = API.getPlayersInRadiusOfPlayer(20, player);
             foreach (Client p in dolist)
             {
-                API.sendChatMessageToPlayer(p, "~#ff33cc~", message + "(( " + player.name + " ))");
+                API.sendChatMessageToPlayer(p, "~#ff33cc~", message + " (( " + player.name + " ))");
             }
         }
         [Command("c", "~w~(( KULLANIM: /c [konuşma] ))", GreedyArg = true)]
@@ -31,7 +31,7 @@ namespace Eden.Core.Commands
             List<Client> plist = API.getPlayersInRadiusOfPlayer(10, player);
             foreach (Client p in plist)
             {
-                API.sendChatMessageToPlayer(p, "~#f2f2f2~", player.name + "(sessizce) :" + message);
+                API.sendChatMessageToPlayer(p, "~#f2f2f2~", player.name + "(sessizce): " + message);
             }
         }
         [Command("s", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
@@ -40,7 +40,7 @@ namespace Eden.Core.Commands
             List<Client> plist = API.getPlayersInRadiusOfPlayer(40, player);
             foreach (Client p in plist)
             {
-                API.sendChatMessageToPlayer(p, "~#a6a6a6~", player.name + "(bağırarak) :" + message);
+                API.sendChatMessageToPlayer(p, "~#a6a6a6~", player.name + "(bağırarak): " + message);
             }
         }
         [Command("b", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
@@ -49,7 +49,7 @@ namespace Eden.Core.Commands
             List<Client> plist = API.getPlayersInRadiusOfPlayer(40, player);
             foreach (Client p in plist)
             {
-                API.sendChatMessageToPlayer(p, "~#a6a6a6~", "(( OOC )) " + player.name + " :" + message);
+                API.sendChatMessageToPlayer(p, "~#a6a6a6~", "(( OOC )) " + player.name + ": " + message);
             }
         }
         

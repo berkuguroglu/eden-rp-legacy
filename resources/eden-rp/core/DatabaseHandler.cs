@@ -149,6 +149,7 @@ namespace Eden.Core
                 {
                     EdenCore.VehicleList.Add(new EdenVehicle((VehicleHash)rtd.GetInt32("modelhash"), rtd.GetInt32("vehid"), EdenCore.api.createVehicle((VehicleHash)rtd.GetInt32("modelhash"), new Vector3(rtd.GetFloat("x"), rtd.GetFloat("y"), rtd.GetFloat("z")), new Vector3(0, 0, 0), rtd.GetInt32("c1"), rtd.GetInt32("c2")), rtd.GetInt32("ownerclientid"), rtd.GetInt32("c1"), rtd.GetInt32("c2"), rtd.GetString("ownername"), new Vector3(rtd.GetFloat("x"), rtd.GetFloat("y"), rtd.GetFloat("z")), false));
                 }
+                rtd.Close();
             }
             catch (MySqlException ex)
             {

@@ -70,6 +70,7 @@ namespace Eden.Core
             Player newplayer = new Player(client);
             DatabaseHandler.InitializeCharacter(newplayer);
             PlayerList.Add(newplayer);
+            client.position = newplayer.Client.position;
         }
 
         private void InitializeServer()

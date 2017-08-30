@@ -6,7 +6,7 @@ namespace Eden.Core
     public class Player
     {
         Client client;
-        EdenCharacter character;
+        EdenCharacter character = new EdenCharacter();
         int clientid;
         bool firstlogin;
         int level;
