@@ -26,5 +26,12 @@ namespace Eden.Core
             Client = player;
             Character.Name = Client.name.Replace("_", " ");
         }
+
+        public static Player FindPlayer(Client client)
+        {
+            Player player = null;
+            EdenCore.PlayerList.ForEach(item => { if (item.Client == client) player = item; });
+            return player;
+        }
     }
 }
