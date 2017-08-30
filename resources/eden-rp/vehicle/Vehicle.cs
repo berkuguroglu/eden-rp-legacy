@@ -1,13 +1,14 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Shared.Math;
-using MySql.Data.MySqlClient;
-namespace eden_rp.vehicle
+using Eden.Core;
+
+namespace Eden.Vehicle
 {
-    class Vehicle : Script
+    public class EdenVehicle : Script
     {
         VehicleHash modelhash;
-        public NetHandle veh;
+        private NetHandle veh;
         int vehid; // UNIQUE_PRIMARY_KEY
         int owc; // OWNER_CLIENT_ID
         int color1, color2;
@@ -15,11 +16,22 @@ namespace eden_rp.vehicle
         string ownername;
         object refs;
         Vector3 parkposition;
-        public Vehicle()
+
+        public VehicleHash Modelhash { get { return modelhash; } set { modelhash = value; } }
+        public NetHandle Veh { get { return veh; } set { veh = value; } }
+        public int Vehid { get { return vehid; } set { vehid = value; } }
+        public int Owc { get { return owc; } set { owc = value; } }
+        public int Color1 { get { return color1; } set { color1 = value; } }
+        public int Color2 { get { return color2; } set { color2 = value; } }
+        public string Ownername { get { return ownername; } set { ownername = value; } }
+        public object Refs { get { return refs; } set { refs = value; } }
+        public Vector3 Parkposition { get { return parkposition; } set { parkposition = value; } }
+
+        public EdenVehicle()
         {
             // default constructor
         }
-        public Vehicle(VehicleHash hash, int vehid, NetHandle veh, int owc, int c1, int c2, string name, Vector3 p, bool first)
+        public EdenVehicle(VehicleHash hash, int vehid, NetHandle veh, int owc, int c1, int c2, string name, Vector3 p, bool first)
         {
             modelhash = hash;
             this.veh = veh;
@@ -30,40 +42,7 @@ namespace eden_rp.vehicle
             this.parkposition = p;
             this.vehid = vehid;
             API.consoleOutput("Bir araç oluşturuldu."); // make logger do this
-            if (first)
-                SetDataForDB();
-        }
-
-        // consider getter/setter way instead (Edit->Refactor->Encapsulate field)
-        public object GetData(string objectname)
-        {
-            switch(objectname)
-            {
-                case "model": return modelhash;
-                case "vehid": return vehid;
-                case "owc": return owc;
-                 case "c1": return color1;
-                 case "c2": return color2;
-                 case "posx": return parkposition.X;
-                 case "posy": return parkposition.Y;
-                 case "posz": return parkposition.Z;
-                 default: return refs; // returting a reference thats null
-            }
-        }
-        private void SetDataForDB()
-        {
-            MySqlConnection connectionvehicle = EdenCore.EdenDatabaseHandler.con;
-            MySqlCommand command = new MySqlCommand("INSERT INTO erp_vehicles (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", connectionvehicle);
-            command.Parameters.AddWithValue("@id", this.vehid);
-            command.Parameters.AddWithValue("@ownercid", this.owc);
-            command.Parameters.AddWithValue("@ownname", this.ownername);
-            command.Parameters.AddWithValue("@model", (int)this.modelhash);
-            command.Parameters.AddWithValue("@colorone", this.color1);
-            command.Parameters.AddWithValue("@colortwo", this.color2);
-            command.Parameters.AddWithValue("@px", this.parkposition.X);
-            command.Parameters.AddWithValue("@py", this.parkposition.Y);
-            command.Parameters.AddWithValue("@pz", this.parkposition.Z);
-            command.ExecuteNonQuery();
+            if (first) DatabaseHandler.AddVehicle(this);
         }
     }
 }

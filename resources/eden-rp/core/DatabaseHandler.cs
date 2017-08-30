@@ -1,30 +1,31 @@
-﻿using GrandTheftMultiplayer.Server.API;
-using GrandTheftMultiplayer.Server.Elements;
+﻿using GrandTheftMultiplayer.Server.Elements;
+using GrandTheftMultiplayer.Shared;
+using GrandTheftMultiplayer.Shared.Math;
 using MySql.Data.MySqlClient;
 using Eden.Vehicle;
 
 namespace Eden.Core
 {
-    public static class EdenDatabaseHandler
+    public class DatabaseHandler
     {
-        private static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
-        private static API api = new API();
+        internal static MySqlConnection con = new MySqlConnection("SERVER=localhost;DATABASE=edenrp;UID=root;PASSWORD=''");
 
         public static bool OpenConnection()
         {
             try
             {
                 con.Open();
-                api.consoleOutput("[i] Veritabani baglantisi kuruldu"); // make logger do this
+                EdenCore.api.consoleOutput("[i] Veritabani baglantisi kuruldu"); // make logger do this
                 return true;
             }
             catch (MySqlException ex)
             {
-                api.consoleOutput("[!] Veritabani baglantisi kurulamadi"); // make logger do this
-                api.consoleOutput("[!] MySQL ERR: " + ex.ToString()); // make logger do this
+                EdenCore.api.consoleOutput("[!] Veritabani baglantisi kurulamadi"); // make logger do this
+                EdenCore.api.consoleOutput("[!] MySQL ERR: " + ex.ToString()); // make logger do this
                 return false;
             }
         }
+
         public static bool CloseConnection()
         {
             try
@@ -34,8 +35,8 @@ namespace Eden.Core
             }
             catch (MySqlException ex)
             {
-                api.consoleOutput("[!] Veritabani baglantisi kapatilirken bir hata olustu"); // make logger do this
-                api.consoleOutput("[!] MySQL ERR: " + ex.ToString()); // make logger do this
+                EdenCore.api.consoleOutput("[!] Veritabani baglantisi kapatilirken bir hata olustu"); // make logger do this
+                EdenCore.api.consoleOutput("[!] MySQL ERR: " + ex.ToString()); // make logger do this
                 return false;
             }
         }
@@ -67,8 +68,7 @@ namespace Eden.Core
             reader.Close();
             return valid;
         }
-        
-        // update as gamemode expands
+
         public static void LogoutPlayer(Client player)
         {
             try
@@ -82,23 +82,8 @@ namespace Eden.Core
             }
             catch (MySqlException ex)
             {
-                api.consoleOutput("[!] MYSQL exception on player logout: " + ex.StackTrace); // make logger do this
+                EdenCore.api.consoleOutput("[!] MYSQL exception on player logout: " + ex.StackTrace); // make logger do this
             }
-        }
-
-        public static void AddVehicle(EdenVehicle veh)
-        {
-            MySqlCommand command = new MySqlCommand("INSERT INTO vehs (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", con);
-            command.Parameters.AddWithValue("@id", veh.Vehid);
-            command.Parameters.AddWithValue("@ownercid", veh.Owc);
-            command.Parameters.AddWithValue("@ownname", veh.Ownername);
-            command.Parameters.AddWithValue("@model", (int)veh.Modelhash);
-            command.Parameters.AddWithValue("@colorone", veh.Color1);
-            command.Parameters.AddWithValue("@colortwo", veh.Color2);
-            command.Parameters.AddWithValue("@px", veh.Parkposition.X);
-            command.Parameters.AddWithValue("@py", veh.Parkposition.Y);
-            command.Parameters.AddWithValue("@pz", veh.Parkposition.Z);
-            command.ExecuteNonQuery();
         }
 
         public static void InitializeCharacter(Player player)
@@ -128,9 +113,49 @@ namespace Eden.Core
             }
             catch (MySqlException ex)
             {
-                api.consoleOutput("[!] MYSQL exception on player initialization: " + ex.StackTrace); // make logger do this 
+                EdenCore.api.consoleOutput("[!] MYSQL exception on player initialization: " + ex.StackTrace); // make logger do this 
             }
         }
 
+        public static void AddVehicle(EdenVehicle veh)
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("INSERT INTO erp_vehicles (vehid, ownerclientid, ownername, modelhash, c1, c2, x, y, z) VALUES(@id, @ownercid, @ownname, @model, @colorone, @colortwo, @px, @py, @pz)", con);
+                command.Parameters.AddWithValue("@id", veh.Vehid);
+                command.Parameters.AddWithValue("@ownercid", veh.Owc);
+                command.Parameters.AddWithValue("@ownname", veh.Ownername);
+                command.Parameters.AddWithValue("@model", (int)veh.Modelhash);
+                command.Parameters.AddWithValue("@colorone", veh.Color1);
+                command.Parameters.AddWithValue("@colortwo", veh.Color2);
+                command.Parameters.AddWithValue("@px", veh.Parkposition.X);
+                command.Parameters.AddWithValue("@py", veh.Parkposition.Y);
+                command.Parameters.AddWithValue("@pz", veh.Parkposition.Z);
+                command.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                EdenCore.api.consoleOutput("[!] MYSQL exception on vehicle insertion: " + ex.StackTrace); // make logger do this 
+            }
+        }
+
+        public static void LoadVehicles()
+        {
+            try
+            {
+                MySqlCommand command = new MySqlCommand("SELECT * FROM erp_vehicles", con);
+                MySqlDataReader rtd = command.ExecuteReader();
+                while (rtd.Read())
+                {
+                    EdenCore.VehicleList.Add(new EdenVehicle((VehicleHash)rtd.GetInt32("modelhash"), rtd.GetInt32("vehid"), EdenCore.api.createVehicle((VehicleHash)rtd.GetInt32("modelhash"), new Vector3(rtd.GetFloat("x"), rtd.GetFloat("y"), rtd.GetFloat("z")), new Vector3(0, 0, 0), rtd.GetInt32("c1"), rtd.GetInt32("c2")), rtd.GetInt32("ownerclientid"), rtd.GetInt32("c1"), rtd.GetInt32("c2"), rtd.GetString("ownername"), new Vector3(rtd.GetFloat("x"), rtd.GetFloat("y"), rtd.GetFloat("z")), false));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                EdenCore.api.consoleOutput("[!] MYSQL exception on vehicle initialization: " + ex.StackTrace); // make logger do this 
+            }
+
+            
+        }
     }
 }
