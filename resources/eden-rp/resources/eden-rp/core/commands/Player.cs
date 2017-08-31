@@ -31,7 +31,7 @@ namespace Eden.Core.Commands
             List<Client> plist = API.getPlayersInRadiusOfPlayer(10, player);
             foreach (Client p in plist)
             {
-                API.sendChatMessageToPlayer(p, "~#a6a6a6~", player.name + "(sessizce): " + message);
+                API.sendChatMessageToPlayer(p, "~#f2f2f2~", player.name + "(sessizce): " + message);
             }
         }
         [Command("s", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
@@ -40,7 +40,7 @@ namespace Eden.Core.Commands
             List<Client> plist = API.getPlayersInRadiusOfPlayer(40, player);
             foreach (Client p in plist)
             {
-                API.sendChatMessageToPlayer(p, "~#f2f2f2~", player.name + "(bağırarak): " + message);
+                API.sendChatMessageToPlayer(p, "~#a6a6a6~", player.name + "(bağırarak): " + message);
             }
         }
         [Command("b", "~w~(( KULLANIM: /b [konuşma] ))", GreedyArg = true)]
@@ -52,25 +52,57 @@ namespace Eden.Core.Commands
                 API.sendChatMessageToPlayer(p, "~#a6a6a6~", "(( OOC )) " + player.name + ": " + message);
             }
         }
-
-        [Command("pm", "~w~(( KULLANIM: /pm [clientID] [mesaj] ))", GreedyArg = true)]
-        public void PrivateMessage(Client player, int clid, string message)
+        
+        /* [Command("pm", GreedyArg = true)]
+    public void pm(Client player, int clid, string message)
+    {
+        bool state = false;
+        foreach (players c in connectionfirst.plyrs)
         {
-            bool state = false;
-            foreach (Eden.Core.Player receiver in EdenCore.PlayerList)
+            if (clid == c.clientid)
             {
-                if (clid == receiver.Clientid)
+                string info = "~y~(( [PM] - " + c.plyr.name + ": " + message + " ))";
+                API.sendChatMessageToPlayer(player, info);
+                info = "~y~(( [PM] - " + player.name + ": " + message + " ))";
+                API.sendChatMessageToPlayer(c.plyr, info);
+                state = true;
+                break;
+            }
+        }
+        if (state == false) dmgs.SendErrorMessage(player, "Bu oyuncu oyunda değil.");
+    } // Burası player datalarına göre düzenlenecek.
+    [Command("motor", GreedyArg = false)]
+    public void engine(Client player)
+    {
+        defaultmessages dmg = new defaultmessages();
+        if (API.isPlayerInAnyVehicle(player) == true && API.getPlayerVehicleSeat(player) == -1)
+        {
+            foreach (vehicles v in connectionfirst.vehs)
+            {
+                if (v.veh == API.getPlayerVehicle(player))
                 {
-                    string info = "~y~(( [PM] - " + receiver.Character.Name + ": " + message + " ))";
-                    API.sendChatMessageToPlayer(player, info);
-                    info = "~y~(( [PM] - " + Eden.Core.Player.FindPlayer(player).Character.Name + ": " + message + " ))";
-                    API.sendChatMessageToPlayer(receiver.Client, info);
-                    state = true;
-                    break;
+                    int i;
+                    for (i = 0; i < connectionfirst.plyrs.Count; i++)
+                    {
+                        if (player == connectionfirst.plyrs[i].plyr && v.getowner() == connectionfirst.plyrs[i].getInfo("clientid"))
+                        {
+                            v.engines(player);
+                            break;
+                        }
+
+                        else
+                        {
+                            dmg.SendErrorMessage(player, "Bu araç size ait değil.");
+                            break;
+                        }
+                    }
                 }
             }
-            if (state == false)
-                API.sendChatMessageToPlayer(player, "Bu oyuncu oyunda değil."); // replace error message function
+
         }
+        else
+        {
+            dmg.SendErrorMessage(player, "Bu komutu kullanabilmek için bir aracın içerisinde olmalısınız.");
+        }*/
     }
 }

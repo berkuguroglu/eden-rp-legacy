@@ -14,7 +14,7 @@ namespace Eden.Vehicle
             {
                 if(edh.Veh == vehicle)
                 {
-                    EdenCore.api.sendChatMessageToPlayer(player, "~r~(([ID] ~w~" + edh.Vehid.ToString() + " ~r~|| ~w~" + edh.Modelhash.ToString() +"~r~ || Sahip: ~w~" + edh.Ownername + "~r~ ))");
+                    EdenCore.api.sendChatMessageToPlayer(player, "~w~(([ID] " + edh.Vehid.ToString() + " || " + edh.Modelhash.ToString() +" || Sahip: " + edh.Ownername);
                     break;
                 }
             }
