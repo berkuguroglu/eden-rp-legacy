@@ -57,7 +57,7 @@ namespace Eden.Core.Commands
         public void PrivateMessage(Client player, int clid, string message)
         {
             bool state = false;
-            foreach (Eden.Core.Player receiver in EdenCore.PlayerList)
+            foreach (Core.Player receiver in EdenCore.PlayerList)
             {
                 if (clid == receiver.Clientid)
                 {

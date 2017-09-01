@@ -11,12 +11,12 @@ namespace Eden.Vehicle.Commands
     {
 
         [Command("motor", GreedyArg = false)]
-        public void engine(Client player)
+        public void Engine(Client player)
         {
             if (API.isPlayerInAnyVehicle(player) == true && API.getPlayerVehicleSeat(player) == -1)
             {
                 int myveh = EdenVehicle.FindVehicle(API.getPlayerVehicle(player));
-                Eden.Core.Player peh = Eden.Core.Player.FindPlayer(player);
+                Core.Player peh = Core.Player.Find(player);
                 if (myveh == -1) API.sendChatMessageToPlayer(player, "Bir hata oluştu.");
                 if (EdenCore.VehicleList[myveh].Owc != peh.Clientid)
                 API.sendChatMessageToPlayer(player, "Bu araç size ait değil.");

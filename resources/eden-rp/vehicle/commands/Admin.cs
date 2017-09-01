@@ -16,7 +16,7 @@ namespace Eden.Vehicle.Commands
             Core.Player sender = Core.Player.Find(player); 
             if (!sender.Equals(null) && sender.Adminlevel > 3)
             {
-                Eden.Core.Player localp = Eden.Core.Player.Find(ownerid);
+                Core.Player localp = Core.Player.Find(ownerid);
                 if (localp != null)
                 {
                     EdenCore.VehicleList.Add(new EdenVehicle(hash, EdenCore.VehicleList.Count, API.createVehicle(hash, new Vector3(player.position.X + 5, player.position.Y, player.position.Z), player.rotation, c1, c2), ownerid, c1, c2, localp.Character.Name, player.position, true));
