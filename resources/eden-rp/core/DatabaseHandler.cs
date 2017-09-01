@@ -90,7 +90,7 @@ namespace Eden.Core
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT id, posx, posy, posz, firstlogin, money, bankaccount, bankmoney, skin, age, level, gender, experience, adminlevel FROM erp_users WHERE name=@name", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT id, posx, posy, posz, firstlogin, money, bankaccount, bankmoney, skin, age, level, experience, adminlevel FROM erp_users WHERE name=@name", con);
                 cmd.Parameters.AddWithValue("name", player.Client.name);
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -108,7 +108,6 @@ namespace Eden.Core
                         player.Client.position.X = reader.GetFloat("posx");
                         player.Client.position.Y = reader.GetFloat("posy");
                         player.Client.position.Z = reader.GetFloat("posz");
-                        player.Character.Gender = reader.GetBoolean("gender");
                     }
                 }
             }

@@ -13,10 +13,10 @@ namespace Eden.Vehicle.Commands
         [Command("createvehicle", "~w~(( KULLANIM: /createvehicle [color1] [color2] [modelhash] [ownerid] ))", GreedyArg = true)]
         public void CreateVehicle(Client player, int c1, int c2, VehicleHash hash, int ownerid, int fix = 0)
         {
-            Core.Player sender = Core.Player.Find(player); 
+            Core.Player sender = Core.Player.FindPlayer(player); 
             if (!sender.Equals(null) && sender.Adminlevel > 3)
             {
-                Core.Player localp = Core.Player.Find(ownerid);
+                Eden.Core.Player localp = Eden.Core.Player.FindPlayer(ownerid);
                 if (localp != null)
                 {
                     EdenCore.VehicleList.Add(new EdenVehicle(hash, EdenCore.VehicleList.Count, API.createVehicle(hash, new Vector3(player.position.X + 5, player.position.Y, player.position.Z), player.rotation, c1, c2), ownerid, c1, c2, localp.Character.Name, player.position, true));
@@ -33,7 +33,7 @@ namespace Eden.Vehicle.Commands
         [Command("getveh", "~w~(( KULLANIM: /getveh [vehid] ))", GreedyArg = true)]
         public void GetVehicle(Client player, int vehid, int fix = 0)
         {
-            Core.Player sender = Core.Player.Find(player);
+            Core.Player sender = Core.Player.FindPlayer(player);
             if (!sender.Equals(null) && sender.Adminlevel > 2)
             {
                 int turn = EdenVehicle.FindVehicle(vehid);

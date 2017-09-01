@@ -4,7 +4,6 @@ API.onServerEventTrigger.connect(function (eventName, args) {
 
     switch (eventName) {
         case "login": {
-            API.setHudVisible(false);
             res = API.getScreenResolution();
             loginBrowser = API.createCefBrowser(400, 300, true);
             API.waitUntilCefBrowserInit(loginBrowser);
@@ -17,7 +16,6 @@ API.onServerEventTrigger.connect(function (eventName, args) {
             API.sendNotification("Giris basarili!");
             API.showCursor(false);
             API.destroyCefBrowser(loginBrowser);
-            API.setHudVisible(true);
             API.setActiveCamera(null);
             break;
         }

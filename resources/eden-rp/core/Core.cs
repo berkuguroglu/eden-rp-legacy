@@ -3,7 +3,6 @@ using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared.Math;
 using System.Collections.Generic;
 using Eden.Vehicle;
-using Eden.Character.Creation;
 
 namespace Eden.Core
 {
@@ -33,8 +32,6 @@ namespace Eden.Core
 
         private void OnPlayerConnectedHandler(Client player)
         {
-            player.freeze(true);
-            player.position = new Vector3(0.0, 0.0, 500.0);
             if (!DatabaseHandler.IsUserValid(player)) player.kick("Karakter adi bulunamadi!");
         }
 
@@ -45,6 +42,8 @@ namespace Eden.Core
 
         private void OnPlayerFinishedDownloadHandler(Client player)
         {
+            player.freeze(true);
+            player.position = new Vector3(0.0, 0.0, 500.0);
             player.triggerEvent("loginCamera");
             player.triggerEvent("login");
         }
@@ -60,8 +59,6 @@ namespace Eden.Core
                             sender.triggerEvent("loginGranted");
                             InitializePlayer(sender);
                             sender.freeze(false);
-                            Player player = Player.Find(sender);
-                            if (player.Firstlogin) CharacterCreation.InitializeCreator(player);
                         }
                         else sender.triggerEvent("loginDenied");
                         break;

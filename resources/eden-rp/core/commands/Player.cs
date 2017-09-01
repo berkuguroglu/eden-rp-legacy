@@ -57,13 +57,13 @@ namespace Eden.Core.Commands
         public void PrivateMessage(Client player, int clid, string message)
         {
             bool state = false;
-            foreach (Core.Player receiver in EdenCore.PlayerList)
+            foreach (Eden.Core.Player receiver in EdenCore.PlayerList)
             {
                 if (clid == receiver.Clientid)
                 {
                     string info = "~y~(( [PM] - " + receiver.Character.Name + ": " + message + " ))";
                     API.sendChatMessageToPlayer(player, info);
-                    info = "~y~(( [PM] - " + Core.Player.Find(player).Character.Name + ": " + message + " ))";
+                    info = "~y~(( [PM] - " + Eden.Core.Player.FindPlayer(player).Character.Name + ": " + message + " ))";
                     API.sendChatMessageToPlayer(receiver.Client, info);
                     state = true;
                     break;
