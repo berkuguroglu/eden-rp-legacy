@@ -17,7 +17,6 @@ namespace Eden.Vehicle
         object refs;
         Vector3 parkposition;
         bool EngineStatuss;
-        bool LockStatuss;
         public VehicleHash Modelhash { get { return modelhash; } set { modelhash = value; } }
         public NetHandle Veh { get { return veh; } set { veh = value; } }
         public int Vehid { get { return vehid; } set { vehid = value; } }
@@ -28,7 +27,6 @@ namespace Eden.Vehicle
         public object Refs { get { return refs; } set { refs = value; } }
         public Vector3 Parkposition { get { return parkposition; } set { parkposition = value; } }
         public bool EngineStatus { get { return EngineStatuss; } set { EngineStatuss = value; } }
-        public bool LockStatus { get { return LockStatuss; } set { LockStatuss = value; } }
 
         public EdenVehicle()
         {
@@ -47,7 +45,6 @@ namespace Eden.Vehicle
             API.consoleOutput("Bir araç oluşturuldu."); // make logger do this
             API.setVehicleEngineStatus(this.veh, false);
             EngineStatuss = false;
-            LockStatuss = false;
             if (first) DatabaseHandler.AddVehicle(this);
         }
 
