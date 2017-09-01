@@ -63,7 +63,7 @@ namespace Eden.Core.Commands
                 {
                     string info = "~y~(( [PM] - " + receiver.Character.Name + ": " + message + " ))";
                     API.sendChatMessageToPlayer(player, info);
-                    info = "~y~(( [PM] - " + Eden.Core.Player.FindPlayer(player).Character.Name + ": " + message + " ))";
+                    info = "~y~(( [PM] - " + Core.Player.Find(player).Character.Name + ": " + message + " ))";
                     API.sendChatMessageToPlayer(receiver.Client, info);
                     state = true;
                     break;
