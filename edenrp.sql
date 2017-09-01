@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 31 Ağu 2017, 20:53:16
--- Sunucu sürümü: 5.7.14
--- PHP Sürümü: 5.6.25
+-- Host: 127.0.0.1
+-- Generation Time: Sep 01, 2017 at 02:44 AM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,17 +17,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `edenrp`
+-- Database: `edenrp`
 --
+DROP DATABASE `edenrp`;
 CREATE DATABASE IF NOT EXISTS `edenrp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `edenrp`;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `erp_users`
+-- Table structure for table `erp_users`
 --
 
+DROP TABLE IF EXISTS `erp_users`;
 CREATE TABLE `erp_users` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL DEFAULT 'New_Character',
@@ -36,6 +38,7 @@ CREATE TABLE `erp_users` (
   `posy` float NOT NULL,
   `posz` float NOT NULL,
   `firstlogin` tinyint(1) NOT NULL DEFAULT '1',
+  `gender` tinyint(1) NOT NULL COMMENT '0 female | 1 male',
   `money` int(11) NOT NULL DEFAULT '0',
   `bankaccount` mediumint(8) UNSIGNED NOT NULL,
   `bankmoney` int(11) NOT NULL,
@@ -47,19 +50,20 @@ CREATE TABLE `erp_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `erp_users`
+-- Dumping data for table `erp_users`
 --
 
-INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`) VALUES
-(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 402.404, -1002.67, -99.0041, 0, 0, 0, 0, 0, 0, 0, 0, 5),
-(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', -551.321, -1968.2, 26.9494, 0, 0, 0, 0, 0, 0, 0, 0, 5);
+INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `gender`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`) VALUES
+(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 402.908, -996.826, -99.0002, 1, 0, 0, 0, 0, 0, 23, 0, 0, 5),
+(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', -551.321, -1968.2, 26.9494, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `erp_vehicles`
+-- Table structure for table `erp_vehicles`
 --
 
+DROP TABLE IF EXISTS `erp_vehicles`;
 CREATE TABLE `erp_vehicles` (
   `vehid` int(11) NOT NULL,
   `ownerclientid` int(11) NOT NULL,
@@ -73,7 +77,7 @@ CREATE TABLE `erp_vehicles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `erp_vehicles`
+-- Dumping data for table `erp_vehicles`
 --
 
 INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, `c1`, `c2`, `x`, `y`, `z`) VALUES
@@ -82,27 +86,27 @@ INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, 
 (2, 101, 'Lisa Crown', -1647941228, 2, 2, -397.734, -756.876, 37.2709);
 
 --
--- Dökümü yapılmış tablolar için indeksler
+-- Indexes for dumped tables
 --
 
 --
--- Tablo için indeksler `erp_users`
+-- Indexes for table `erp_users`
 --
 ALTER TABLE `erp_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `erp_vehicles`
+-- Indexes for table `erp_vehicles`
 --
 ALTER TABLE `erp_vehicles`
   ADD PRIMARY KEY (`vehid`);
 
 --
--- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `erp_users`
+-- AUTO_INCREMENT for table `erp_users`
 --
 ALTER TABLE `erp_users`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;

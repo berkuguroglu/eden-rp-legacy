@@ -64,6 +64,7 @@
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\Commands\Admin.cs" />
     <Compile Include="Character\Commands\Player.cs" />
+    <Compile Include="Character\Creation\CharacterCreation.cs" />
     <Compile Include="Character\Events.cs" />
     <Compile Include="Core\Commands\Admin.cs" />
     <Compile Include="Core\Commands\Player.cs" />
@@ -85,6 +86,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Character\Creation\Client\main.js" />
     <Content Include="Core\Login\login.html" />
     <Content Include="Core\Login\login.js" />
     <Content Include="Core\Login\logo.png" />

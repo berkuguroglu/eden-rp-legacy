@@ -5,36 +5,39 @@
   <assembly ref="MySql.Data.dll" />
   <assembly ref="System.Data.dll"/>
 
-  <file src="core/login/login.html" />
-  <file src="core/login/logo.png" />
-  
-  <script src="core/Core.cs" type="server" lang="csharp" />
-  <script src="core/crypto/Crypto.cs" type="server" lang="csharp" />
-  <script src="core/crypto/Bcrypt.cs" type="server" lang="csharp" />
-  <script src="core/commands/Admin.cs" type="server" lang="csharp" />
-  <script src="core/commands/Player.cs" type="server" lang="csharp" />
-  <script src="core/DatabaseHandler.cs" type="server" lang="csharp" />
-  <script src="core/Logger.cs" type="server" lang="csharp" />
-  <script src="core/Player.cs" type="server" lang="csharp" />
-          
-  <script src="core/login/login.js" type="client" lang="javascript" />
-  
-  <script src="building/Building.cs" type="server" lang="csharp" />
-  <script src="building/business/Business.cs" type="server" lang="csharp" />
-  <script src="building/business/commands/Admin.cs" type="server" lang="csharp" />
-  <script src="building/business/commands/Player.cs" type="server" lang="csharp" />
-  <script src="building/housing/House.cs" type="server" lang="csharp" />
-  <script src="building/housing/commands/Admin.cs" type="server" lang="csharp" />
-  <script src="building/housing/commands/Player.cs" type="server" lang="csharp" />
-  
-  <script src="character/Character.cs" type="server" lang="csharp" />
-  <script src="character/Animation.cs" type="server" lang="csharp" />
-  <script src="character/Events.cs" type="server" lang="csharp" />
-  <script src="character/commands/Admin.cs" type="server" lang="csharp" />
-  <script src="character/commands/Player.cs" type="server" lang="csharp" />
-  
-  <script src="vehicle/Vehicle.cs" type="server" lang="csharp" />
-  <script src="vehicle/Events.cs" type="server" lang="csharp" />
-  <script src="vehicle/commands/Admin.cs" type="server" lang="csharp" />
-  <script src="vehicle/commands/Player.cs" type="server" lang="csharp" />
+  <file src="Core/Login/login.html" />
+  <file src="Core/Login/logo.png" />
+
+  <script src="Core/Core.cs" type="server" lang="csharp" />
+  <script src="Core/crypto/Crypto.cs" type="server" lang="csharp" />
+  <script src="Core/crypto/Bcrypt.cs" type="server" lang="csharp" />
+  <script src="Core/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Core/commands/Player.cs" type="server" lang="csharp" />
+  <script src="Core/DatabaseHandler.cs" type="server" lang="csharp" />
+  <script src="Core/Logger.cs" type="server" lang="csharp" />
+  <script src="Core/Player.cs" type="server" lang="csharp" />
+
+  <script src="Core/Login/Login.js" type="client" lang="javascript" />
+
+  <script src="Building/Building.cs" type="server" lang="csharp" />
+  <script src="Building/Business/Business.cs" type="server" lang="csharp" />
+  <script src="Building/Business/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Building/Business/commands/Player.cs" type="server" lang="csharp" />
+  <script src="Building/Housing/House.cs" type="server" lang="csharp" />
+  <script src="Building/Housing/commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Building/Housing/commands/Player.cs" type="server" lang="csharp" />
+
+  <script src="Character/Character.cs" type="server" lang="csharp" />
+  <script src="Character/Animation.cs" type="server" lang="csharp" />
+  <script src="Character/Events.cs" type="server" lang="csharp" />
+  <script src="Character/Commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Character/Commands/Player.cs" type="server" lang="csharp" />
+  <script src="Character/Creation/CharacterCreation.cs" type="server" lang="csharp" />
+
+  <script src="Character/Creation/Client/main.js" type="client" lang="javascript" />
+
+  <script src="Vehicle/Vehicle.cs" type="server" lang="csharp" />
+  <script src="Vehicle/Events.cs" type="server" lang="csharp" />
+  <script src="Vehicle/Commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Vehicle/Commands/Player.cs" type="server" lang="csharp" />
 </meta>

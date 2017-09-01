@@ -29,13 +29,13 @@ namespace Eden.Core
             EdenCore.api.setPlayerNametag(player, this.Character.Name); */
         }
 
-        public static Player FindPlayer(Client client)
+        public static Player Find(Client client)
         {
             Player player = null;
             EdenCore.PlayerList.ForEach(item => { if (item.Client == client) player = item; });
             return player;
         }
-        public static Player FindPlayer(int clientid)
+        public static Player Find(int clientid)
         {
             Player player = null;
             EdenCore.PlayerList.ForEach(item => { if (item.Clientid == clientid) player = item; });
