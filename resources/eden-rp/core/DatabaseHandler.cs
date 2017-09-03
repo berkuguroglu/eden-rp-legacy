@@ -68,7 +68,31 @@ namespace Eden.Core
             reader.Close();
             return valid;
         }
+        public static void UplaodVehicles()
+        {
 
+             for (int i = 0; i < 4; i++)
+             {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand("UPDATE erp_vehicles SET ownerclientid=@ownerclientid, ownername=@ownername, modelhash=@modelhash, c1=@c1, c2=@c2, x=@x, y=@y, z=@z WHERE vehid = @zehid", con);
+                    cmd.Parameters.AddWithValue("@zehid", EdenCore.VehicleList[i].Vehid);
+                    cmd.Parameters.AddWithValue("@ownerclientid", EdenCore.VehicleList[i].Owc);
+                    cmd.Parameters.AddWithValue("@ownername", EdenCore.VehicleList[i].Ownername);
+                    cmd.Parameters.AddWithValue("@modelhash", (int)EdenCore.VehicleList[i].Modelhash);
+                    cmd.Parameters.AddWithValue("@c1", EdenCore.VehicleList[i].Color1);
+                    cmd.Parameters.AddWithValue("@c2", EdenCore.VehicleList[i].Color2);
+                    cmd.Parameters.AddWithValue("@x", EdenCore.VehicleList[i].Parkposition.X);
+                    cmd.Parameters.AddWithValue("@y", EdenCore.VehicleList[i].Parkposition.Y);
+                    cmd.Parameters.AddWithValue("@z", EdenCore.VehicleList[i].Parkposition.Z);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
+                {
+                    EdenCore.api.consoleOutput("[!] MYSQL exception on updating vehicle data: " + ex.StackTrace + ex.ToString()); // make logger do this
+                }
+            }
+        }
         public static void LogoutPlayer(Client player)
         {
             try

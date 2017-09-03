@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 01, 2017 at 02:44 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 03 Eyl 2017, 12:45:33
+-- Sunucu sürümü: 5.7.14
+-- PHP Sürümü: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,19 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `edenrp`
+-- Veritabanı: `edenrp`
 --
-DROP DATABASE `edenrp`;
 CREATE DATABASE IF NOT EXISTS `edenrp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `edenrp`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `erp_users`
+-- Tablo için tablo yapısı `erp_users`
 --
 
-DROP TABLE IF EXISTS `erp_users`;
 CREATE TABLE `erp_users` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL DEFAULT 'New_Character',
@@ -50,7 +48,7 @@ CREATE TABLE `erp_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `erp_users`
+-- Tablo döküm verisi `erp_users`
 --
 
 INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `gender`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`) VALUES
@@ -60,10 +58,9 @@ INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `erp_vehicles`
+-- Tablo için tablo yapısı `erp_vehicles`
 --
 
-DROP TABLE IF EXISTS `erp_vehicles`;
 CREATE TABLE `erp_vehicles` (
   `vehid` int(11) NOT NULL,
   `ownerclientid` int(11) NOT NULL,
@@ -77,36 +74,37 @@ CREATE TABLE `erp_vehicles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `erp_vehicles`
+-- Tablo döküm verisi `erp_vehicles`
 --
 
 INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, `c1`, `c2`, `x`, `y`, `z`) VALUES
-(0, 101, 'Lisa Crown', -1647941228, 3, 3, -395.827, -761.128, 36.8895),
-(1, 101, 'Lisa Crown', 1394036463, 2, 2, -405.782, -761.202, 37.099),
-(2, 101, 'Lisa Crown', -1647941228, 2, 2, -397.734, -756.876, 37.2709);
+(0, 100, 'Lewis Connor', -1647941228, 3, 3, -395.827, -761.128, 36.8895),
+(1, 101, 'Lisa Crown', 1394036463, 2, 2, -554.358, -1976.01, 51.0551),
+(2, 101, 'Lisa Crown', -1647941228, 2, 2, -397.734, -756.876, 37.2709),
+(3, 101, 'Lisa Crown', -1943285540, 33, 33, -694.162, -1635.09, 23.4485);
 
 --
--- Indexes for dumped tables
+-- Dökümü yapılmış tablolar için indeksler
 --
 
 --
--- Indexes for table `erp_users`
+-- Tablo için indeksler `erp_users`
 --
 ALTER TABLE `erp_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `erp_vehicles`
+-- Tablo için indeksler `erp_vehicles`
 --
 ALTER TABLE `erp_vehicles`
   ADD PRIMARY KEY (`vehid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
 --
--- AUTO_INCREMENT for table `erp_users`
+-- Tablo için AUTO_INCREMENT değeri `erp_users`
 --
 ALTER TABLE `erp_users`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;

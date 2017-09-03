@@ -1,4 +1,5 @@
-﻿namespace Eden.Character
+﻿using GrandTheftMultiplayer.Server.Constant;
+namespace Eden.Character
 {
     public class EdenCharacter
     {

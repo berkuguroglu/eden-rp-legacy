@@ -59,6 +59,45 @@ namespace Eden.Vehicle.Commands
 
 
         }
+        [Command("arespawn", "~w~(( KULLANIM: /respawn [vehid] ))", GreedyArg = true)]
+        public void RespawnVehicle(Client player, int vehid, int fix = 0)
+        {
+            Core.Player thsclient = Core.Player.Find(player);
+            bool flag = false;
+            foreach (EdenVehicle veh in EdenCore.VehicleList)
+            {
+                if (veh.Vehid == vehid && thsclient.Clientid == veh.Owc)
+                {
+                    foreach(Core.Player p in EdenCore.PlayerList)
+                    {
+                        if (veh.Veh == API.getPlayerVehicle(p.Client))
+                        {
+                            API.sendChatMessageToPlayer(player, "~r~Aracınızı bir oyuncu kullanırken spawn edemezsiniz.");
+                            flag = true;
+                        }
+                        else
+                        {
+                            if (veh.EngineStatus == true)
+                            {
+                                API.sendChatMessageToPlayer(player, "~r~Aracın motoru açık, spawn edilemez.");
+                                flag = true;
+                            }
+                            else
+                            {
+                                API.setEntityPosition(veh.Veh, veh.Parkposition);
+                                API.sendChatMessageToPlayer(player, "~g~Aracınız son parkettiğiniz noktaya spawn edilmiştir.");
+                                API.setVehicleEngineStatus(veh.Veh, false);
+                                veh.EngineStatus = false;
+                                flag = true;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            if (!flag) API.sendChatMessageToPlayer(player, "~r~Bu araç size ait değil ya da böyle bir araç bulunmuyor.");
+
+        }
         [Command("parket", GreedyArg = false)]
         public void ParkVehicle(Client player)
         {
@@ -77,6 +116,7 @@ namespace Eden.Vehicle.Commands
                     EdenCore.VehicleList[index].EngineStatus = false;
                     API.setVehicleEngineStatus(EdenCore.VehicleList[index].Veh, false);
                     API.setEntityPosition(EdenCore.VehicleList[index].Veh, player.position);
+                    API.repairVehicle(EdenCore.VehicleList[index].Veh);
                 }
 
             }
