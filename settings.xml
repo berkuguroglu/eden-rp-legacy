@@ -22,5 +22,5 @@
   <upnp>false</upnp>
   <fqdn></fqdn>
   <conntimeout>false</conntimeout>
-  <allow_client_devtools>false</allow_client_devtools>
+  <allow_client_devtools>true</allow_client_devtools>
 </config>
