@@ -1,12 +1,14 @@
-let loginBrowser, res;
+let loginBrowser = API.createCefBrowser(400, 300, true);
+let res = API.getScreenResolution();
 
 API.onServerEventTrigger.connect(function (eventName, args) {
 
     switch (eventName) {
         case "login": {
             API.setHudVisible(false);
-            res = API.getScreenResolution();
-            loginBrowser = API.createCefBrowser(400, 300, true);
+            let pos = new Vector3(0.0, 0.0, 164.0);
+            let newCam = API.createCamera(pos, pos);
+            API.setActiveCamera(newCam);
             API.waitUntilCefBrowserInit(loginBrowser);
             API.setCefBrowserPosition(loginBrowser, res.Width / 2 - 200, res.Height / 2 - 150);
             API.loadPageCefBrowser(loginBrowser, "core/login/login.html");
@@ -24,12 +26,6 @@ API.onServerEventTrigger.connect(function (eventName, args) {
         case "loginDenied": {
             API.sendNotification("Hatali parola!");
             loginBrowser.call("clean");
-            break;
-        }
-        case "loginCamera": {
-            var pos = new Vector3(0.0, 0.0, 164.0);
-            var newCam = API.createCamera(pos, pos);
-            API.setActiveCamera(newCam);
             break;
         }
     }
