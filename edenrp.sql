@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 11 Eyl 2017, 17:26:21
--- Sunucu sürümü: 5.7.14
--- PHP Sürümü: 5.6.25
+-- Host: 127.0.0.1
+-- Generation Time: Sep 11, 2017 at 10:39 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,17 +17,55 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `edenrp`
+-- Database: `edenrp`
 --
+DROP DATABASE `edenrp`;
 CREATE DATABASE IF NOT EXISTS `edenrp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `edenrp`;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `erp_users`
+-- Table structure for table `erp_facialdata`
 --
 
+DROP TABLE IF EXISTS `erp_facialdata`;
+CREATE TABLE `erp_facialdata` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `mom` tinyint(4) UNSIGNED NOT NULL,
+  `dad` tinyint(4) UNSIGNED NOT NULL,
+  `shapemix` float NOT NULL,
+  `skinmix` float NOT NULL,
+  `eyecolor` tinyint(4) UNSIGNED NOT NULL,
+  `hairstyle` tinyint(4) UNSIGNED NOT NULL,
+  `haircolor` tinyint(4) UNSIGNED NOT NULL,
+  `highlight` tinyint(4) UNSIGNED NOT NULL,
+  `eyebrow` tinyint(4) UNSIGNED NOT NULL,
+  `ebcolor` tinyint(4) UNSIGNED NOT NULL,
+  `facialhair` tinyint(4) UNSIGNED NOT NULL,
+  `fhcolor` tinyint(4) UNSIGNED NOT NULL,
+  `blemishes` tinyint(4) UNSIGNED NOT NULL,
+  `aging` tinyint(4) UNSIGNED NOT NULL,
+  `complexion` tinyint(4) UNSIGNED NOT NULL,
+  `sundamage` tinyint(4) UNSIGNED NOT NULL,
+  `freckles` tinyint(4) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `erp_facialdata`
+--
+
+INSERT INTO `erp_facialdata` (`id`, `mom`, `dad`, `shapemix`, `skinmix`, `eyecolor`, `hairstyle`, `haircolor`, `highlight`, `eyebrow`, `ebcolor`, `facialhair`, `fhcolor`, `blemishes`, `aging`, `complexion`, `sundamage`, `freckles`) VALUES
+(100, 21, 0, 0.5, 0.5, 0, 0, 0, 0, 34, 0, 29, 0, 255, 255, 255, 255, 255),
+(101, 23, 1, 0.275, 0.8, 4, 21, 8, 7, 0, 0, 29, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `erp_users`
+--
+
+DROP TABLE IF EXISTS `erp_users`;
 CREATE TABLE `erp_users` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `name` varchar(32) NOT NULL DEFAULT 'New_Character',
@@ -49,19 +87,20 @@ CREATE TABLE `erp_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `erp_users`
+-- Dumping data for table `erp_users`
 --
 
 INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `gender`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`, `factionid`) VALUES
-(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 402.908, -996.826, -99.0002, 1, 0, 0, 0, 0, 0, 23, 5, 0, 5, 0),
-(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 271.499, -1671.43, 29.3528, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0);
+(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 403.529, -998.904, -99.004, 0, 0, 0, 0, 0, 0, 23, 5, 0, 5, 0),
+(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `erp_vehicles`
+-- Table structure for table `erp_vehicles`
 --
 
+DROP TABLE IF EXISTS `erp_vehicles`;
 CREATE TABLE `erp_vehicles` (
   `vehid` int(11) NOT NULL,
   `ownerclientid` int(11) NOT NULL,
@@ -75,7 +114,7 @@ CREATE TABLE `erp_vehicles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `erp_vehicles`
+-- Dumping data for table `erp_vehicles`
 --
 
 INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, `c1`, `c2`, `x`, `y`, `z`) VALUES
@@ -86,27 +125,33 @@ INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, 
 (4, 101, 'Lisa Crown', 1876516712, 3, 2, 370.951, -847.164, 28.7431);
 
 --
--- Dökümü yapılmış tablolar için indeksler
+-- Indexes for dumped tables
 --
 
 --
--- Tablo için indeksler `erp_users`
+-- Indexes for table `erp_facialdata`
+--
+ALTER TABLE `erp_facialdata`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `erp_users`
 --
 ALTER TABLE `erp_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `erp_vehicles`
+-- Indexes for table `erp_vehicles`
 --
 ALTER TABLE `erp_vehicles`
   ADD PRIMARY KEY (`vehid`);
 
 --
--- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `erp_users`
+-- AUTO_INCREMENT for table `erp_users`
 --
 ALTER TABLE `erp_users`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
