@@ -19,24 +19,34 @@ namespace Eden.Core
         public EdenCore()
         {
             API.onResourceStart += OnResourceStartHandler;
+            API.onResourceStart += VehicleEvents.OnResourceStart;
             API.onPlayerConnected += OnPlayerConnectedHandler;
             API.onPlayerFinishedDownload += OnPlayerFinishedDownloadHandler;
             API.onClientEventTrigger += OnClientEventTriggerHandler;
+            API.onClientEventTrigger += CharacterCreationEvents.OnClientEventTriggerHandler;
             API.onPlayerDisconnected += OnPlayerDisconnectedHandler;
             API.onPlayerEnterVehicle += VehicleEvents.OnPlayerEnterVehicle;
+            API.onChatMessage += OnChatMessageHandler;
             API.onResourceStop += OnResourceStopHandler;
         }
+
         private void OnResourceStopHandler()
         {
             DatabaseHandler.UplaodVehicles();
         }
 
-        private void OnResourceStartHandler()
+        private void OnChatMessageHandler(Client sender, string message, CancelEventArgs cancel)
+        {
+            cancel.Cancel = true;
+            List<Player> around = Player.FindRange(sender, 20);
+            around.ForEach(p => { p.Client.sendChatMessage(p.Character.Name, message); });
+        }
+
+            private void OnResourceStartHandler()
         {
             API.consoleOutput("Test script running");
             InitializeServer();
             DatabaseHandler.OpenConnection();
-            VehicleEvents.OnResourceStart();
             Statics.Buildings.LoadStaticMarkers();
             
         }
@@ -50,12 +60,11 @@ namespace Eden.Core
 
         private void OnPlayerDisconnectedHandler(Client player, string reason)
         {
-            DatabaseHandler.LogoutPlayer(player);
+            DatabaseHandler.LogoutPlayer(Player.Find(player));
             API.detachEntity(Player.Find(player).LoginEntity);
         }
         private void OnPlayerFinishedDownloadHandler(Client player)
         {
-            player.triggerEvent("loginCamera");
             player.triggerEvent("login");
         }
 
@@ -105,11 +114,12 @@ namespace Eden.Core
 
         private void InitializePlayer(Client client)
         {
-            Player newplayer = new Player(client);
-            DatabaseHandler.InitializeCharacter(newplayer);
-            PlayerList.Add(newplayer);
-            client.position = newplayer.Client.position;
-            TextLabel tl =  EdenCore.api.createTextLabel("~r~ID: " + "~w~" + newplayer.Clientid.ToString(), client.position, 10.0f, 3.0f, false, EdenCore.api.getEntityDimension(client.handle));
+            Player player = new Player(client);
+            bool freemode = DatabaseHandler.InitializePlayer(player);
+            PlayerList.Add(player);
+            client.setSkin(player.Character.Skin);
+            if (freemode) player.SyncCharacter();
+            TextLabel tl =  API.createTextLabel("~r~ID: " + "~w~" + player.Clientid.ToString(), client.position, 10.0f, 3.0f, false, API.getEntityDimension(client.handle));
             API.attachEntityToEntity(tl.handle, client.handle, "SKEL_ROOT", new Vector3(client.position.X, client.position.Y + 2, client.position.Z), client.rotation);
             API.setEntityTransparency(tl.handle, 255);
         }

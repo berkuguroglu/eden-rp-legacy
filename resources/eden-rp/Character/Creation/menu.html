@@ -1,0 +1,149 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CC</title>
+    <link rel="stylesheet" type="text/css" href="menu.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="skintype">
+            <button class="tablink" id="gta-button">GTA</button>
+            <button class="tablink" id="freemode-button">Freemode</button>
+        </div>
+
+        <div id="gta-tab" class="tab">
+            <div class="label">GTA V içerisindeki hazır skinlerden birini kullanabilirsiniz.<br>Seçim yapmak için ok tuşlarını kullanın.</div><br><br>
+            <div class="navbox left" id="gta-left">&#8249;</div>
+            <div class="navbox right" id="gta-right">&#8250;</div>
+        </div>
+
+        <div id="freemode-tab">
+            <div id="freemode-nav">
+                <button class="tablink" id="face-button">yüz şekli</button>
+                <button class="tablink" id="appearance-button">detaylar</button>
+                <button class="tablink">kıyafet</button>
+            </div>
+
+            <div id="face" class="tab">
+                <div id="mom" class="face" onclick="showSelector('mom')" data-shape="21"></div>
+                <div id="dad" class="face" onclick="showSelector('dad')" data-shape="0"></div>
+                <div class="parentlabel">Anne</div>
+                <div class="parentlabel">Baba</div>
+                <iframe id="parentselector" src="slider.html" height="140"></iframe>
+                Yüz benzeme oranı
+                <input type="range" min="0" max="1" value="0.5" step="0.025" class="slider" id="resemblance">
+                <br><br>
+                Ten rengi benzeme oranı
+                <input type="range" min="0" max="1" value="0.5" step="0.025" class="slider" id="skintone">
+                <br><br>
+            </div>
+
+
+            <div id="appearance" class="tab">
+                <div class="component">
+                    <div class="navbox" id="hairstyle-left">&#8249;</div>
+                    <div class="label">Saç tipi</div>
+                    <div class="navbox" id="hairstyle-right">&#8250;</div>
+                </div>
+                <div id="haircolor">
+                    <div class="component double">
+                        <div class="navbox" id="haircolor-left">&#8249;</div>
+                        <div class="label">Saç rengi</div>
+                        <div class="navbox" id="haircolor-right">&#8250;</div>
+                    </div>
+                    <div class="component double">
+                        <div class="navbox" id="highlight-left">&#8249;</div>
+                        <div class="label">Detay rengi</div>
+                        <div class="navbox" id="highlight-right">&#8250;</div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="component" id="eyebrow">
+                    <div class="navbox" id="eyebrow-left">&#8249;</div>
+                    <div class="label">Kaş tipi</div>
+                    <div class="navbox" id="eyebrow-right">&#8250;</div>
+                </div>
+                <div class="component double" id="browcolor">
+                    <div class="navbox" id="browcolor-left">&#8249;</div>
+                    <div class="label">Kaş rengi</div>
+                    <div class="navbox" id="browcolor-right">&#8250;</div>
+                </div>
+                <div class="divider"></div>
+                <div id="facialhair">
+                    <div class="component" id="facialstyle">
+                        <div class="navbox" id="facialhair-left">&#8249;</div>
+                        <div class="label">Sakal tipi</div>
+                        <div class="navbox" id="facialhair-right">&#8250;</div>
+                    </div>
+                    <div class="component double" id="facialcolor">
+                        <div class="navbox" id="facialcolor-left">&#8249;</div>
+                        <div class="label">Sakal rengi</div>
+                        <div class="navbox" id="facialcolor-right">&#8250;</div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="component">
+                    <div class="navbox" id="eyecolor-left">&#8249;</div>
+                    <div class="label">Göz rengi</div>
+                    <div class="navbox" id="eyecolor-right">&#8250;</div>
+                </div>
+                <div class="divider"></div>
+                <div class="component">
+                    <div class="navbox" id="ageing-left">&#8249;</div>
+                    <div class="label">Buruşukluk</div>
+                    <div class="navbox" id="ageing-right">&#8250;</div>
+                    <input type="checkbox" id="ageing-switch" /><label for="ageing-switch"></label>
+                </div>
+                <div class="divider"></div>
+                <div class="component">
+                    <div class="navbox" id="complexion-left">&#8249;</div>
+                    <div class="label">Kızarıklık</div>
+                    <div class="navbox" id="complexion-right">&#8250;</div>
+                    <input type="checkbox" id="complexion-switch" /><label for="complexion-switch"></label>
+                </div>
+                <div class="divider"></div>
+                <div class="component">
+                    <div class="navbox" id="blemishes-left">&#8249;</div>
+                    <div class="label">Cilt lekesi</div>
+                    <div class="navbox" id="blemishes-right">&#8250;</div>
+                    <input type="checkbox" id="blemishes-switch" /><label for="blemishes-switch"></label>
+                </div>
+                <div class="divider"></div>
+                <div class="component">
+                    <div class="navbox" id="freckles-left">&#8249;</div>
+                    <div class="label">Ben / Çil</div>
+                    <div class="navbox" id="freckles-right">&#8250;</div>
+                    <input type="checkbox" id="freckles-switch" /><label for="freckles-switch"></label>
+                </div>
+                <div class="divider"></div>
+                <div class="component">
+                    <div class="navbox" id="sundamage-left">&#8249;</div>
+                    <div class="label">Güneş etkisi</div>
+                    <div class="navbox" id="sundamage-right">&#8250;</div>
+                    <input type="checkbox" id="sundamage-switch" /><label for="sundamage-switch"></label>
+                </div>
+            </div>
+
+            <div id="outfit" class="tab">
+                <div class="label">Kıyafet seçimi</div><br>
+                <div class="navbox left" id="outfit-left">&#8249;</div>
+                <div class="navbox right" id="outfit-right">&#8250;</div>
+            </div>
+        </div>
+
+        <div class="warn">Karakterinizi göründüğü şekilde kaydetmek istediğinize emin misiniz?</div>
+        <button id="save">Onayla</button>
+    </div>
+
+    <script type="text/javascript" src="menu.js"></script>
+</body>
+</html>
+
+<!-- <div class="component">
+<div class="navbox" id="native-left">&#8249;</div>
+<div class="label">native tester</div>
+<div class="navbox" id="native-right">&#8250;</div>
+<input type="checkbox" id="native-switch" /><label for="native-switch"></label>
+</div> -->

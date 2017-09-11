@@ -71,7 +71,12 @@
     <Compile Include="Character\Commands\Admin.cs" />
     <Compile Include="Character\Commands\Player.cs" />
     <Compile Include="Character\Creation\CharacterCreation.cs" />
+    <Compile Include="Character\Creation\Events.cs" />
     <Compile Include="Character\Events.cs" />
+    <Compile Include="Character\Face.cs" />
+    <Compile Include="Character\Hair.cs" />
+    <Compile Include="Character\Heritage.cs" />
+    <Compile Include="Character\Outfit.cs" />
     <Compile Include="Core\Commands\Admin.cs" />
     <Compile Include="Core\Commands\Player.cs" />
     <Compile Include="Core\Crypto\Bcrypt.cs" />
@@ -93,16 +98,72 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Resources\font\4iCs6KVjbNBYlgoKcQ72j00.woff2" />
+    <None Include="Resources\font\4iCs6KVjbNBYlgoKfw72.woff2" />
+    <None Include="Resources\font\4iCv6KVjbNBYlgoCxCvjsGyN.woff2" />
+    <None Include="Resources\font\4iCv6KVjbNBYlgoCxCvjvmyNL4U.woff2" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Character\Creation\Client\main.js" />
+    <Content Include="Character\Creation\charactercreator.js" />
+    <Content Include="Character\Creation\menu.css" />
+    <Content Include="Character\Creation\menu.html" />
+    <Content Include="Character\Creation\menu.js" />
+    <Content Include="Character\Creation\parents\Face-0.jpg" />
+    <Content Include="Character\Creation\parents\Face-1.jpg" />
+    <Content Include="Character\Creation\parents\Face-10.jpg" />
+    <Content Include="Character\Creation\parents\Face-11.jpg" />
+    <Content Include="Character\Creation\parents\Face-12.jpg" />
+    <Content Include="Character\Creation\parents\Face-13.jpg" />
+    <Content Include="Character\Creation\parents\Face-14.jpg" />
+    <Content Include="Character\Creation\parents\Face-15.jpg" />
+    <Content Include="Character\Creation\parents\Face-16.jpg" />
+    <Content Include="Character\Creation\parents\Face-17.jpg" />
+    <Content Include="Character\Creation\parents\Face-18.jpg" />
+    <Content Include="Character\Creation\parents\Face-19.jpg" />
+    <Content Include="Character\Creation\parents\Face-2.jpg" />
+    <Content Include="Character\Creation\parents\Face-20.jpg" />
+    <Content Include="Character\Creation\parents\Face-21.jpg" />
+    <Content Include="Character\Creation\parents\Face-22.jpg" />
+    <Content Include="Character\Creation\parents\Face-23.jpg" />
+    <Content Include="Character\Creation\parents\Face-24.jpg" />
+    <Content Include="Character\Creation\parents\Face-25.jpg" />
+    <Content Include="Character\Creation\parents\Face-26.jpg" />
+    <Content Include="Character\Creation\parents\Face-27.jpg" />
+    <Content Include="Character\Creation\parents\Face-28.jpg" />
+    <Content Include="Character\Creation\parents\Face-29.jpg" />
+    <Content Include="Character\Creation\parents\Face-3.jpg" />
+    <Content Include="Character\Creation\parents\Face-30.jpg" />
+    <Content Include="Character\Creation\parents\Face-31.jpg" />
+    <Content Include="Character\Creation\parents\Face-32.jpg" />
+    <Content Include="Character\Creation\parents\Face-33.jpg" />
+    <Content Include="Character\Creation\parents\Face-34.jpg" />
+    <Content Include="Character\Creation\parents\Face-35.jpg" />
+    <Content Include="Character\Creation\parents\Face-36.jpg" />
+    <Content Include="Character\Creation\parents\Face-37.jpg" />
+    <Content Include="Character\Creation\parents\Face-38.jpg" />
+    <Content Include="Character\Creation\parents\Face-39.jpg" />
+    <Content Include="Character\Creation\parents\Face-4.jpg" />
+    <Content Include="Character\Creation\parents\Face-40.jpg" />
+    <Content Include="Character\Creation\parents\Face-41.jpg" />
+    <Content Include="Character\Creation\parents\Face-42.jpg" />
+    <Content Include="Character\Creation\parents\Face-43.jpg" />
+    <Content Include="Character\Creation\parents\Face-44.jpg" />
+    <Content Include="Character\Creation\parents\Face-45.jpg" />
+    <Content Include="Character\Creation\parents\Face-5.jpg" />
+    <Content Include="Character\Creation\parents\Face-6.jpg" />
+    <Content Include="Character\Creation\parents\Face-7.jpg" />
+    <Content Include="Character\Creation\parents\Face-8.jpg" />
+    <Content Include="Character\Creation\parents\Face-9.jpg" />
+    <Content Include="Character\Creation\slider.css" />
+    <Content Include="Character\Creation\slider.html" />
+    <Content Include="Character\Creation\slider.js" />
     <Content Include="Core\Login\login.html" />
     <Content Include="Core\Login\login.js" />
-    <Content Include="Core\Login\logo.png" />
     <Content Include="Faction\Faction.js" />
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\img\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

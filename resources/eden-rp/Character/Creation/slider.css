@@ -1,0 +1,29 @@
+::-webkit-scrollbar {
+    height: 15px;
+}
+::-webkit-scrollbar-track {
+    opacity: 0;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(82,200,229, 0.5);
+}
+
+#wrapper {
+    background-color: rgba(22, 22, 22, 0.3);
+    overflow: auto;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+img {
+    display: inline-block;
+    height: 100px;
+    background-size: cover;
+    opacity: 0.5;
+    margin: 3px 3px;
+    transition: opacity 0.5s;
+}
+
+img:hover {
+    opacity: 1;
+}
