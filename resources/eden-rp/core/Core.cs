@@ -4,6 +4,7 @@ using GrandTheftMultiplayer.Shared.Math;
 using System.Collections.Generic;
 using Eden.Vehicle;
 using Eden.Character.Creation;
+using Eden.Faction;
 using System;
 
 namespace Eden.Core
@@ -13,6 +14,7 @@ namespace Eden.Core
         internal static API api = new API();
         internal static List<Player> PlayerList = new List<Player>();
         internal static List<EdenVehicle> VehicleList = new List<EdenVehicle>();
+        internal static List<EdenFaction> FactionList = new List<EdenFaction>();
 
         public EdenCore()
         {
@@ -24,7 +26,6 @@ namespace Eden.Core
             API.onPlayerEnterVehicle += VehicleEvents.OnPlayerEnterVehicle;
             API.onResourceStop += OnResourceStopHandler;
         }
-
         private void OnResourceStopHandler()
         {
             DatabaseHandler.UplaodVehicles();
@@ -36,6 +37,8 @@ namespace Eden.Core
             InitializeServer();
             DatabaseHandler.OpenConnection();
             VehicleEvents.OnResourceStart();
+            Statics.Buildings.LoadStaticMarkers();
+            
         }
 
         private void OnPlayerConnectedHandler(Client player)
@@ -56,13 +59,13 @@ namespace Eden.Core
             player.triggerEvent("login");
         }
 
-        private void OnClientEventTriggerHandler(Client sender, string eventName, params object[] arguments)
+        private void OnClientEventTriggerHandler(Client sender, string eventName, params object[] args)
         {
             switch (eventName)
             {
                 case "loginCheck":
                     {
-                        if (DatabaseHandler.IsPasswordValid(sender, arguments[0].ToString()))
+                        if (DatabaseHandler.IsPasswordValid(sender, args[0].ToString()))
                         {
                             sender.triggerEvent("loginGranted");
                             InitializePlayer(sender);
@@ -71,6 +74,30 @@ namespace Eden.Core
                             if (player.Firstlogin) CharacterCreation.InitializeCreator(player);
                         }
                         else sender.triggerEvent("loginDenied");
+                        break;
+                    }
+                    case "creatingFactionForPlayer":
+                    {
+                        bool flag = false;
+                        foreach (EdenFaction cf in FactionList)
+                        {
+                            if(cf.fName == args[0].ToString())
+                            {
+                                flag = true;
+                                API.sendChatMessageToPlayer(Player.Find((int)args[1]).Client, "~r~Bu isimde bir oluşum zaten bulunuyor, ismi değiştirin.");
+                                break;
+                            }
+                        }
+                        
+                        if (!flag)
+                        {
+                            EdenFaction newfaction = new EdenFaction(args[0].ToString(), EdenCore.FactionList.Count + 1, (int)args[1]);
+                            EdenCore.FactionList.Add(newfaction);
+                            API.sendChatMessageToPlayer(Player.Find((int)args[1]).Client, "~g~" + newfaction.fName + " isimli yeni bir oluşum oluşturdunuz.");
+                            API.sendChatMessageToPlayer(Player.Find((int)args[1]).Client, "~g~Oluşumunuz ile ilgili ayarlar için /olusumduzenle komutunu kullanınız.");
+                            Player.Find((int)args[1]).Faction = EdenCore.FactionList.Count;
+                            break;
+                        }
                         break;
                     }
             }
@@ -82,8 +109,9 @@ namespace Eden.Core
             DatabaseHandler.InitializeCharacter(newplayer);
             PlayerList.Add(newplayer);
             client.position = newplayer.Client.position;
-            newplayer.LoginEntity = API.createTextLabel("~r~ID: " + "~w~" + newplayer.Clientid.ToString(), client.position, 4.0f, 2.0f, false, 0);
-            API.attachEntityToEntity(newplayer.LoginEntity, client, "SKEL_Head", client.position, client.rotation);
+            TextLabel tl =  EdenCore.api.createTextLabel("~r~ID: " + "~w~" + newplayer.Clientid.ToString(), client.position, 10.0f, 3.0f, false, EdenCore.api.getEntityDimension(client.handle));
+            API.attachEntityToEntity(tl.handle, client.handle, "SKEL_ROOT", new Vector3(client.position.X, client.position.Y + 2, client.position.Z), client.rotation);
+            API.setEntityTransparency(tl.handle, 255);
         }
 
         private void InitializeServer()

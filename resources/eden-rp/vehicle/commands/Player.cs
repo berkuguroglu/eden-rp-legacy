@@ -77,19 +77,15 @@ namespace Eden.Vehicle.Commands
                         }
                         else
                         {
-                            if (veh.EngineStatus == true)
-                            {
-                                API.sendChatMessageToPlayer(player, "~r~Aracın motoru açık, spawn edilemez.");
-                                flag = true;
-                            }
-                            else
-                            {
+
                                 API.setEntityPosition(veh.Veh, veh.Parkposition);
                                 API.sendChatMessageToPlayer(player, "~g~Aracınız son parkettiğiniz noktaya spawn edilmiştir.");
                                 API.setVehicleEngineStatus(veh.Veh, false);
+                                API.repairVehicle(veh.Veh);
+                                API.setVehicleHealth(veh.Veh, 100.0f); 
                                 veh.EngineStatus = false;
                                 flag = true;
-                            }
+                            
                         }
                     }
                     

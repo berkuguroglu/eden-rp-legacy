@@ -2,11 +2,29 @@
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Server.Managers;
+using GrandTheftMultiplayer.Shared.Math;
 
 namespace Eden.Core.Commands
 {
     public class Player : Script
     {
+        [Command("gir", GreedyArg = true)]
+        public void Enter(Client player)
+        {
+            List<Client> players;
+            for (int i = 0; i < Statics.Buildings.markerstatics.Count; i++)
+            {
+                players = API.getPlayersInRadiusOfPosition(3, Statics.Buildings.markerstatics[i]);
+                foreach(Client plyr in players)
+                {
+                    if(plyr == player)
+                    {
+                        API.setEntityPosition(player, new Vector3(-3239.264, 1004.406, 12.45598));
+                        break;
+                    }
+                }
+            }
+        }
         [Command("me", GreedyArg = true)]
         public void EmoteMe(Client player, string message)
         {
@@ -63,7 +81,7 @@ namespace Eden.Core.Commands
                 {
                     string info = "~y~(( [PM] - " + receiver.Character.Name + ": " + message + " ))";
                     API.sendChatMessageToPlayer(player, info);
-                    info = "~y~(( [PM] - " + Core.Player.Find(player).Character.Name + ": " + message + " ))";
+                    info = "~y~(( [PM] - " + Core.Player.Find(player).Character.Name + "["+Core.Player.Find(player).Clientid+"]"+": " + message + " ))";
                     API.sendChatMessageToPlayer(receiver.Client, info);
                     state = true;
                 }

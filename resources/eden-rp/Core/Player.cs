@@ -1,6 +1,7 @@
 ﻿using GrandTheftMultiplayer.Server.Elements;
 using Eden.Character;
 using GrandTheftMultiplayer.Shared;
+using GrandTheftMultiplayer.Shared.Math;
 
 namespace Eden.Core
 {
@@ -13,6 +14,7 @@ namespace Eden.Core
         int level;
         int experience;
         int adminlevel;
+        int factionID;
         NetHandle loginentity;
 
         public Client Client { get { return client; } set { client = value; } }
@@ -22,14 +24,15 @@ namespace Eden.Core
         public int Level { get { return level; } set { level = value; } }
         public int Experience { get { return experience; } set { experience = value; } }
         public int Adminlevel { get { return adminlevel; } set { adminlevel = value; } }
+        public int Faction { get { return factionID; } set { factionID = value; } }
         public NetHandle LoginEntity { get { return loginentity; } set { loginentity = value; } }
 
         public Player(Client player)
         {
             Client = player;
             Character.Name = Client.name.Replace("_", " ");
-           /* EdenCore.api.setPlayerName(player, this.Character.Name);
-            EdenCore.api.setPlayerNametag(player, this.Character.Name); */
+            EdenCore.api.setPlayerNametag(player, this.Character.Name); 
+
         }
 
         public static Player Find(Client client)

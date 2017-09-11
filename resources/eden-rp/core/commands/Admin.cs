@@ -45,6 +45,32 @@ namespace Eden.Core.Commands
             }
 
         }
+        [Command("kick", "~w~(( KULLANIM: /kick [clientid] [sebep]))", GreedyArg = true)]
+        public void KickPlayer(Client player, int id, string reason, int fix = 0)
+        {
+            if (Core.Player.Find(player).Adminlevel >= 2)
+            {
+                Core.Player peh = Core.Player.Find(id);
+                if (peh == null) API.sendChatMessageToPlayer(player, "~r~Bu oyuncu oyunda değil.");
+                else
+                {
+                    string info = "~r~(( ~w~" + peh.Character.Name + " adlı oyuncu " + reason + " nedeniyle " + Core.Player.Find(player).Character.Name + " tarafından sunucudan atıldı. ~r~))";
+                    API.sendChatMessageToAll(info);
+                    peh.Client.kick();
+                }
+            }
+
+        }
+        [Command("duyuru", "~w~(( KULLANIM: /duyuru [duyuru]))", GreedyArg = true)]
+        public void Announce(Client player, string ann)
+        {
+            if (Core.Player.Find(player).Adminlevel >= 2)
+            {
+                API.sendChatMessageToAll("~r~(( DUYURU: ~w~" + ann +" ~r~))");
+            }
+
+        }
+
 
     }
 

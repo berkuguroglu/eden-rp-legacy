@@ -4,6 +4,7 @@
 
   <assembly ref="MySql.Data.dll" />
   <assembly ref="System.Data.dll"/>
+  <assembly ref="Newtonsoft.Json.dll"/>
 
   <file src="Core/Login/login.html" />
   <file src="Core/Login/logo.png" />
@@ -16,7 +17,7 @@
   <script src="Core/DatabaseHandler.cs" type="server" lang="csharp" />
   <script src="Core/Logger.cs" type="server" lang="csharp" />
   <script src="Core/Player.cs" type="server" lang="csharp" />
-
+  <script src="Core/statics/Buildings.cs" type="server" lang="csharp" />
   <script src="Core/Login/Login.js" type="client" lang="javascript" />
 
   <script src="Building/Building.cs" type="server" lang="csharp" />
@@ -33,6 +34,7 @@
   <script src="Character/Commands/Admin.cs" type="server" lang="csharp" />
   <script src="Character/Commands/Player.cs" type="server" lang="csharp" />
   <script src="Character/Creation/CharacterCreation.cs" type="server" lang="csharp" />
+  
 
   <script src="Character/Creation/Client/main.js" type="client" lang="javascript" />
 
@@ -40,4 +42,10 @@
   <script src="Vehicle/Events.cs" type="server" lang="csharp" />
   <script src="Vehicle/Commands/Admin.cs" type="server" lang="csharp" />
   <script src="Vehicle/Commands/Player.cs" type="server" lang="csharp" />
+
+
+  <script src="Faction/Commands/Player.cs" type="server" lang="csharp" />
+  <script src="Faction/Commands/Admin.cs" type="server" lang="csharp" />
+  <script src="Faction/Faction.cs" type="server" lang="csharp" />
+  <script src="Faction/Faction.js" type="client" lang="javascript" />
 </meta>

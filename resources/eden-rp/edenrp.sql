@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 03 Eyl 2017, 12:45:33
+-- Üretim Zamanı: 11 Eyl 2017, 17:26:21
 -- Sunucu sürümü: 5.7.14
 -- PHP Sürümü: 5.6.25
 
@@ -44,16 +44,17 @@ CREATE TABLE `erp_users` (
   `age` tinyint(3) UNSIGNED NOT NULL DEFAULT '18',
   `level` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `experience` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `adminlevel` tinyint(3) UNSIGNED NOT NULL DEFAULT '0'
+  `adminlevel` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `factionid` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Tablo döküm verisi `erp_users`
 --
 
-INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `gender`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`) VALUES
-(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 402.908, -996.826, -99.0002, 1, 0, 0, 0, 0, 0, 23, 0, 0, 5),
-(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', -551.321, -1968.2, 26.9494, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5);
+INSERT INTO `erp_users` (`id`, `name`, `pwd`, `posx`, `posy`, `posz`, `firstlogin`, `gender`, `money`, `bankaccount`, `bankmoney`, `skin`, `age`, `level`, `experience`, `adminlevel`, `factionid`) VALUES
+(100, 'Lewis_Connor', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 402.908, -996.826, -99.0002, 1, 0, 0, 0, 0, 0, 23, 5, 0, 5, 0),
+(101, 'Lisa_Crown', '$2a$10$nhNBr4WegtttptQtCduKYu94Ljp2xTzAXCeOWv36smutGv3jtg/Vi', 271.499, -1671.43, 29.3528, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -80,8 +81,9 @@ CREATE TABLE `erp_vehicles` (
 INSERT INTO `erp_vehicles` (`vehid`, `ownerclientid`, `ownername`, `modelhash`, `c1`, `c2`, `x`, `y`, `z`) VALUES
 (0, 100, 'Lewis Connor', -1647941228, 3, 3, -395.827, -761.128, 36.8895),
 (1, 101, 'Lisa Crown', 1394036463, 2, 2, -554.358, -1976.01, 51.0551),
-(2, 101, 'Lisa Crown', -1647941228, 2, 2, -397.734, -756.876, 37.2709),
-(3, 101, 'Lisa Crown', -1943285540, 33, 33, -694.162, -1635.09, 23.4485);
+(2, 101, 'Lisa Crown', -1647941228, 2, 2, 8.2686, -1562.66, 28.9631),
+(3, 101, 'Lisa Crown', -1943285540, 33, 33, 497.93, -996.975, 27.132),
+(4, 101, 'Lisa Crown', 1876516712, 3, 2, 370.951, -847.164, 28.7431);
 
 --
 -- Dökümü yapılmış tablolar için indeksler

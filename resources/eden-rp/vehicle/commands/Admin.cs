@@ -41,7 +41,25 @@ namespace Eden.Vehicle.Commands
                 {
                     API.setEntityPosition(EdenCore.VehicleList[turn].Veh, new Vector3(player.position.X + 5, player.position.Y, player.position.Z));
                 }
-                    
+
+                else API.sendChatMessageToPlayer(player, "Böyle bir araç bulunmuyor.");
+            }
+            else
+            {
+                // not admin
+            }
+        }
+        [Command("gotoveh", "~w~(( KULLANIM: /getoveh [vehid] ))", GreedyArg = true)]
+        public void GotoVehicle(Client player, int vehid, int fix = 0)
+        {
+            Core.Player sender = Core.Player.Find(player);
+            if (!sender.Equals(null) && sender.Adminlevel > 2)
+            {
+                int turn = EdenVehicle.FindVehicle(vehid);
+                if (turn != -1)
+                {
+                    API.setEntityPosition(player, API.getEntityPosition(EdenCore.VehicleList[turn].Veh));
+                }
                 else API.sendChatMessageToPlayer(player, "Böyle bir araç bulunmuyor.");
             }
             else

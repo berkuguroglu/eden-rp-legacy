@@ -40,11 +40,17 @@
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.4.9\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,13 +80,16 @@
     <Compile Include="Core\DatabaseHandler.cs" />
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\Statics\Buildings.cs" />
+    <Compile Include="Faction\Faction.cs" />
+    <Compile Include="Faction\Commands\Admin.cs" />
+    <Compile Include="Faction\Commands\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vehicle\Commands\Admin.cs" />
     <Compile Include="Vehicle\Commands\Player.cs" />
     <Compile Include="Vehicle\Events.cs" />
     <Compile Include="Vehicle\Vehicle.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -90,6 +99,7 @@
     <Content Include="Core\Login\login.html" />
     <Content Include="Core\Login\login.js" />
     <Content Include="Core\Login\logo.png" />
+    <Content Include="Faction\Faction.js" />
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
